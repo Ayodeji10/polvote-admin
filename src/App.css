@@ -1,0 +1,2377 @@
+/* resets  */
+body  {
+    background-image: url('../src/bg-img/Rectangle\ 32.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.ReactModal__Overlay {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+p,
+span,
+button,
+label {
+    font-family: 'Nunito', sans-serif;  
+    text-decoration: none !important;
+    color: #FFF;
+    outline: none !important;
+    border: none;
+}
+
+input, select, textarea {
+    outline: none !important;
+    border: none;
+}
+
+.login-form input {
+    background-color: #36425E;
+    color: #FFF !important;
+    border: 0;
+    text-decoration: none !important;
+    outline: none !important;
+}
+
+.login-form input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 0.25;
+  font-family: 'Questrial', sans-serif;
+  opacity: 40%;
+}
+
+.react-datepicker__month-option, react-datepicker__year-option {
+    color: black !important
+}
+/* presets  */
+
+/* navbar  */
+.navbar {
+    padding: 20px 0;
+}
+
+nav li a {
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFF !important;
+    font-family: 'Questrial', sans-serif;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+}
+
+.dropdown li a img {
+    margin-right: 9px;
+}
+
+.dropdown li a {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.8) !important;
+    font-family: 'Questrial', sans-serif;
+}
+
+/* toggle  */
+.navbar-toggler {
+  background: #007AF3 !important;
+  border: none;
+  padding: 10px 6px !important;
+  outline: none !important;
+}
+
+.navbar-toggler span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border: 1px;
+  background: white;
+  border: solid 1px white;
+}
+
+.navbar-toggler span + span {
+  width: 18px;
+  margin: 4px 0 0 4px;
+  width: 22px;
+}
+
+.navbar-toggler span + span + span {
+    width: 10px;
+    margin-left: 4px;
+}
+
+/* carousel */
+.carousel-container {
+    margin-top: 98px;
+    margin-bottom: 87px;
+}
+
+.carousel {
+    overflow-x: scroll;
+    display: flex;
+}
+
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-container h1 {
+    font-size: 35px;
+    font-weight: 700;
+}
+
+.carousel-container .poll {
+    position: relative;
+    background-color: rgba(0, 122, 243, 1);
+    border-radius: 10px;
+    min-width: 463px;
+    padding: 16px;
+    margin-right: 24px;
+}
+
+.carousel-container .poll::before {
+    content: "";
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    cursor: pointer; 
+}
+
+.carousel-container .poll.active::before {
+    content: "";
+    display: none;
+}
+
+.carousel-container .poll h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 32px;
+}
+
+.carousel-container .poll p {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.carousel-container .poll h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.carousel-container .poll h5 {
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.carousel-container .poll h6 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+/* active-poll  */
+.active-poll .graph, .active-poll .leaderboard, .active-poll .users {
+    padding: 16px;
+    background-color: rgba(12, 33, 87, 1);
+    border-radius: 20px;
+}
+
+.active-poll .graph h1 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.active-poll .graph p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.leaderboard .board {
+    overflow-y: scroll; 
+    max-height:310px;
+    /* width: 100% !important;
+    overflow-x: hidden; */
+}
+
+.leaderboard .board::-webkit-scrollbar {
+    display: none;
+}
+
+.leaderboard h1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.leaderboard p {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(132, 194, 255, 1)
+}
+
+.leaderboard p i {
+    margin-left: 10px;
+}
+
+.board .candidate img {
+    border-radius: 10px;
+    max-width: 50px;
+}
+
+.board .candidate h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.board .candidate h4 {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.board .candidate h5 {
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.active-poll .users h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.active-poll .users h1 {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.active-poll .users p {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(132, 194, 255, 1);
+}
+
+.active-poll .users p i {
+    margin-left: 10px
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* polls page  */
+.polls-page {
+    margin-top: 97px;
+    margin-bottom: 40px;
+}
+.polls-page .categories, .single-poll .categories {
+    padding: 25px;
+    background-color: rgba(6, 25, 71, 1);
+    border-radius: 10px;
+}
+
+.polls-page .categories h1, .single-poll .categories h1 {
+    font-size: 20px;
+    font-weight: 700
+}
+
+.polls-page .categories label, .single-poll .categories label {
+    font-size: 18px;
+    font-weight: 400;
+    margin-left: 13px;
+}
+
+.polls-page .header .searchbar {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    padding: 15px 25px
+}
+
+.polls-page .header .searchbar input {
+    background-color: transparent;
+    width: 100%;
+    color: #FFF
+}
+
+.polls-page .header button {
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #FFF;
+    background-color: rgba(0, 122, 243, 1);
+    border-radius: 100px;
+}
+
+.polls-page .header button img {
+    margin-right: 10px;
+}
+
+.polls-page .poll {
+    background-color: rgba(7, 27, 67, 1);
+    border-radius: 10px;
+    padding: 21px 25px
+}
+
+.polls-page .poll h1 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.polls-page .poll p {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.polls-page .poll p.open {
+    color: rgba(132, 194, 255, 1);
+}
+
+.polls-page .poll p.open i{
+    margin-left: 10px;
+}
+
+.polls-page .poll h3 {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* single poll  */
+.single-poll {
+    margin-top: 97px;
+    margin-bottom: 81px;
+}
+
+.single-poll .searchbar {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    padding: 15px 17px
+}
+
+.single-poll .searchbar input {
+    width: 100%;
+    color: #FFF;
+    background-color: transparent;
+}
+
+.single-poll .header h1 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.single-poll button {
+    border-radius: 100px;
+    height: 50px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.single-poll button i {
+    margin-left: 12px;
+}
+
+.single-poll button#edit {
+    background-color: #FFF;
+    color: rgba(0, 122, 243, 1)
+}
+
+.single-poll button#close {
+    background-color: rgba(0, 122, 243, 1);
+    color: #FFF
+}
+
+.single-poll .graph, .single-poll .leaderboard {
+    border-radius: 20px;
+    background-color: rgba(12, 33, 87, 1);
+    padding: 18px
+}
+
+.single-poll .graph h1 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.single-poll .graph p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.single-poll .leaderboard .candidate img {
+    border-radius: 10px;
+    width: 100%;
+    margin-right: 10px;
+}
+
+.single-poll .leaderboard h1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.single-poll .leaderboard p {
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.single-poll .leaderboard .candidate .bar {
+    height: 12px;
+    border-radius: 60px;
+    background-color: #FFF;
+}
+
+.single-poll .leaderboard .candidate .bar-container {
+    border-radius: 60px;
+    background-color: rgba(0, 122, 243, 0.3);
+}
+
+/* modal  */
+#close-poll {
+    width: 476px;
+    height: 367px;
+    border-radius: 10px !important;
+    border: 0 !important;
+    background-color: rgb(41, 70, 129) !important;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    top: 20% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 90px !important
+}
+
+#close-poll h1 {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#close-poll button {
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px 19px
+}
+
+#close-poll #cancel-close-poll {
+    background-color: #FFF;
+    color: rgba(7, 27, 67, 1);
+}
+
+#close-poll #close-close-poll {
+    background-color: rgba(0, 122, 243, 1);
+}
+
+/* edit poll modal  */
+#edit-poll {
+    width: 580px;
+    height: 587px;
+    border-radius: 20px !important;
+    border: 0 !important;
+    background-color: rgba(7, 27, 67, 1) !important;
+    top: 15% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 35px 58px !important
+}
+
+#edit-poll i {
+    float: right
+}
+
+#edit-poll h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+#edit-poll label {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+#edit-poll label {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+#edit-poll .input {
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 14px 26px;
+    margin-bottom: 50px;
+}
+
+#edit-poll .input input {
+    width: 100%;
+    background-color: transparent;
+    font-size: 18px;
+    font-weight: 400;
+    color: #FFF
+}
+
+#edit-poll button {
+    display: block;
+    padding: 15px 0;
+    width: 100%;
+    background-color: rgba(0, 122, 243, 1);
+    border-radius: 100px;
+    font-size: 18px;
+    font-weight: 700
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* edit polls page  */
+.edit-polls .header h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.edit-polls .header p {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.edit-polls .header p i {
+    margin-right: 20px;
+}
+
+.edit-polls .leaderboard {
+    background-color: unset;
+}
+
+.edit-polls .leaderboard .candidate {
+    background-color: rgba(7, 27, 67, 1);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.edit-polls .leaderboard .candidate img {
+    max-width: 70px;
+}
+
+.edit-polls .leaderboard .candidate i {
+    background-color: rgba(244, 67, 54, 1);
+    padding: 8px;
+    cursor: pointer;
+}
+
+.edit-polls .leaderboard .candidate .remove p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+/* modals  */
+#remove-candidate {
+    position: absolute;
+    width: 580px;
+    height: 495px;
+    border-radius: 10px !important;
+    background-color: rgba(7, 27, 67, 1) !important;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    border: 0 !important;
+    top: 20% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 34px 85px !important
+}
+
+#remove-candidate h1 {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+#remove-candidate img {
+    border-radius: 10px;
+}
+
+#remove-candidate h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#remove-candidate p {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+#remove-candidate button {
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px 44px
+}
+
+#remove-candidate #cancel-close-poll {
+    background-color: #FFF;
+    color: rgba(7, 27, 67, 1);
+}
+
+#remove-candidate #close-close-poll {
+    background-color: rgba(0, 122, 243, 1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* new poll  */
+.new-polls {
+    width: 580px;
+    margin: 120px auto;
+}
+
+.new-polls p#header {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 46px;
+}
+
+.new-polls p#header i {
+    margin-right: 20px;
+}
+
+.new-polls form {
+    border-radius: 10px;
+    background-color: rgba(7, 27, 67, 1);
+    padding: 35px 65px
+}
+
+.new-polls h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 36px;
+    text-align: center;
+}
+
+.new-polls .input, .new-polls .or {
+    margin-bottom: 40px;
+}
+
+.new-polls .input label {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.new-polls .input input {
+    display: block;
+    width: 100%;
+    padding: 15px 26px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    color: #FFF;
+}
+
+.new-polls .input input::placeholder {
+    color: rgba(255, 255, 255, 0.6)
+}
+
+.new-polls .input select {
+    padding: 15px 26px;
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.2);
+    width: 100%;
+    color: #FFF
+}
+
+.new-polls .input select option {
+    background-color: #FFF;
+    color: rgba(10, 24, 61, 1)
+}
+
+.new-polls button {
+    width: 100%;
+    background-color: rgba(0, 122, 243, 1);
+    color: #FFF;
+    border-radius: 100px;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 15px
+}
+
+.new-polls button i {
+    margin-left: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* add participants page  */
+.new-polls .searchbar {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    padding: 0 26px
+}
+
+.new-polls .searchbar input {
+    background-color: transparent;
+    padding: 15px 0;
+    border-radius: 0;
+}
+
+/* .new-polls input#image {
+    background-color: #FFF;
+} */
+
+.new-polls .or .row > div {
+    padding: 0 !important
+}
+
+.new-polls .or h3 {
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.new-polls .or .underline {
+    width: 100%;
+    border: solid 2px rgba(255, 255, 255, 1)
+}
+
+.new-polls .add-participant {
+    margin-bottom: 88px;
+}
+
+.new-polls .added-participant {
+    padding: 44px 34px 30px 34px;
+    background-color: rgba(7, 27, 67, 1);
+    border-radius: 10px;
+    margin-bottom: 60px;
+}
+
+.new-polls .added-participant h1 {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.new-polls .added-participant .participant {
+    background-color: rgba(57, 73, 105, 1);
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.new-polls .added-participant .participant img {
+    border-radius: 10px;
+}
+
+.new-polls .added-participant .participant h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.new-polls .added-participant .participant p {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.new-polls .added-participant .participant i {
+    color: rgba(7, 27, 67, 1);
+    background-color: #FFF;
+    border-radius: 50%;
+    padding: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* aspirants page  */
+/* aspirants  */
+.aspirants .header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.aspirants .header p {
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.aspirants .header img {
+    margin-right: 30px
+}
+
+.aspirants .header .searchbar {
+    width: 298px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    padding: 12px 22px
+}
+
+.aspirants .header .searchbar input {
+    width: 100%;
+    background-color: transparent;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.aspirants .header .searchbar input::placeholder {
+    color: rgba(255, 255, 255, 0.6)
+}
+
+.aspirants .header .searchbar img {
+    margin: 0
+}
+
+.aspirants .sort {
+    border-radius: 10px;
+    background-color: rgba(12, 33, 87, 1);
+    padding: 26px
+}
+
+.aspirants .sort button {
+    background-color: transparent;
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.aspirants .sort button:last-child {
+    margin-bottom: 0;
+}
+
+.aspirants .grid .aspirant {
+    position: relative;
+    border-radius: 10px;
+    background-color: rgba(12, 33, 87, 1);
+    padding: 13px;
+    margin-bottom: 69px;
+}
+
+.aspirants .aspirant p {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.aspirants .aspirant .img-container {
+    height: 97px;
+    width: 97px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 28px
+}
+
+.aspirants .aspirant .img-container img {
+    width: 100%;
+    /* height: auto; */
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.aspirants .aspirant h4 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 8px;
+}
+
+.aspirants .aspirant h5 {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.aspirants .aspirant h5 i {
+    font-size: 10px;
+    margin-right: 10px;
+}
+
+.aspirants .aspirant.pending h5 i {
+    color: rgba(254, 192, 6, 1)
+}
+
+.aspirants .aspirant.approved h5 i {
+    color: rgba(29, 235, 179, 1)
+}
+
+.aspirants .aspirant.rejected h5 i {
+    color: rgba(255, 0, 0, 1)
+}
+
+.aspirants .aspirant button, .aspirants .aspirant2 button {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    background-color: rgba(0, 122, 243, 1);
+    border-radius: 5px;
+    padding: 5px 10px
+}
+
+/* list */
+.aspirants .list {
+    border-radius: 10px;
+    padding: 24px 31px;
+    background-color: rgba(12, 33, 87, 1);
+}
+
+.aspirants .list .header {
+    border-bottom: solid 1px rgba(255, 255, 255, 0.1) !important;
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+}
+
+.aspirants .list h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.aspirants .aspirant2 {
+    margin-bottom: 20px;
+}
+
+.aspirants .aspirant2:last-child {
+    margin-bottom: 0;
+}
+
+.aspirants .aspirant2 .img-container {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 16px
+}
+
+.aspirants .aspirant2 .img-container img {
+    width: 100%;
+    /* height: auto; */
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.aspirants .aspirant2 h4 {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.aspirants .aspirant2 h5 {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.aspirants .aspirant2 h5 i {
+    font-size: 10px;
+    margin-right: 10px;
+}
+
+.aspirants .aspirant2.pending h5 i {
+    color: rgba(254, 192, 6, 1)
+}
+
+.aspirants .aspirant2.approved h5 i {
+    color: rgba(29, 235, 179, 1)
+}
+
+.aspirants .aspirant2.rejected h5 i {
+    color: rgba(255, 0, 0, 1)
+}
+
+.aspirants .aspirant2 p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+    /* color: rgba(255, 255, 255, 0.5); */
+}
+
+/* all  */
+.all .person {
+    background-color: rgba(12, 33, 87, 1);
+    padding: 10px 12px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.all .person.active {
+    background-color: rgba(0, 128, 255, 1)
+}
+
+.all .person .img-container {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px
+}
+
+.all .person .img-container img {
+    width: 100%;
+    /* height: auto; */
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.all .person p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.all .person i {
+    font-size: 8px;
+}
+
+.all .person.pending i {
+    color: rgba(254, 192, 6, 1)
+}
+
+.all .person.approved i {
+    color: rgba(29, 235, 179, 1)
+}
+
+.all .person.rejected i {
+    color: rgba(255, 0, 0, 1)
+}
+
+.view #profile-img {
+    width: auto;
+    height: auto;
+    min-height: 100%;
+    max-height: 288px;
+    border-radius: 10px;
+}
+
+.view iframe {
+    border-radius: 10px;
+}
+
+.view h1 {
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 14px;
+}
+
+.view p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 9px;
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.view h2 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.view h2 img {
+    margin-left: 10px;
+}
+
+.view button {
+    padding: 12px 27px;
+    border-radius: 40px;
+    margin-right: 11px
+}
+
+.view button.decline, 
+#acceptModal button.decline {
+    background-color: #FFF;
+    color: rgba(0, 122, 243, 1)
+}
+
+.view button.accept, 
+#acceptModal button.accept {
+    background-color: rgba(0, 122, 243, 1);
+    color: #FFF
+}
+
+.view .details {
+    padding: 29px;
+    background-color: rgba(4, 19, 54, 1);
+    border-radius: 10px;
+    margin-bottom: 44px;
+}
+
+.view .details h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.view .details p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-bottom: 50px;
+    color: rgba(255, 255, 255, 0.7)
+}
+
+.view .details p:last-child {
+    margin-bottom: 0;
+}
+
+.view .history {
+    padding: 27px 29px;
+    background-color: rgba(4, 19, 54, 1); 
+    border-radius: 10px;
+    margin-bottom: 44px;
+}
+
+.view .history h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 21px;
+}
+
+.view .history h5 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.view .history h6 {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0;
+}
+
+
+
+
+/* accept modal  */
+#acceptModal {
+    top: 30% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 396px;
+    height: 280px;
+    background-color: #0A183D !important;
+    border-radius: 10px !important;
+    padding: 29px 33px !important;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+#acceptModal i {
+    float: right
+}
+
+#acceptModal h1 {
+    font-size: 18px;
+    font-weight: 500;
+    max-width: 182px;
+    margin: 0 auto 30px;
+    line-height: 21px;
+}
+
+#acceptModal p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    font-weight: 400;
+    max-width: 270px;
+    margin: 0 auto 39px;
+    line-height: 20px;
+}
+
+#acceptModal button {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 19px;
+    border-radius: 40px;
+}
+
+/* reason modal */
+#reasonModal {
+    top: 30% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 521px;
+    height: 370px;
+    background-color: #0A183D !important;
+    border-radius: 10px !important;
+    padding: 29px 33px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+#reasonModal i {
+    float: right
+}
+
+#reasonModal h1 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+#reasonModal p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    font-weight: 400;
+    max-width: 327px;
+    margin-bottom: 33px;
+}
+
+#reasonModal textarea {
+    height: 123px;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #FFF;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 9px 13px;
+    margin-bottom: 22px;
+}
+
+#reasonModal button {
+    border-radius: 40px;
+    color: #FFF;
+    background-color: rgba(0, 122, 243, 1);
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 38px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* create candidate  */
+.create-candidate {
+    margin-top: 100px
+}
+
+.create-candidate .header {
+    margin-bottom: 120px;
+}
+
+.create-candidate .header p {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.create-candidate .header p i {
+    margin-right: 10px;
+}
+
+.create-candidate .header h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.create-candidate .input {
+    margin-bottom: 40px;
+}
+
+.create-candidate .input label {
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.create-candidate .input input, .create-candidate .input select, .create-candidate .input textarea {
+    display: block;
+    width: 100%;
+    background-color: #FFF;
+    color: black;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.create-candidate .input textarea {
+    height: 229px;
+}
+
+.create-candidate .history {
+    margin-bottom: 120px;
+}
+
+.create-candidate .history h1, .create-candidate .media h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 80px;
+    margin-bottom: 40px;
+}
+
+.create-candidate .history p {
+    font-size: 18px;
+    font-weight: 400;
+    color: rgba(0, 122, 243, 1);
+}
+
+.create-candidate .history p i{
+    font-size: 27px;
+    margin-right: 20px;
+}
+
+.create-candidate .media input{
+    border-radius: 100px;
+}
+
+.create-candidate .media button{
+    /* width: 100%; */
+    border-radius: 50px;
+    background-color: rgba(0, 122, 243, 1);
+    color: #FFF;
+    border-radius: 100px;
+    padding: 14px 62px;
+    margin-bottom: 40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* preview candidate page  */
+.preview-candidate {
+    margin-top: 100px;
+    margin-bottom: 64px;
+}
+
+.preview-candidate .header {
+    margin-bottom: 75px;
+}
+
+.preview-candidate .header p {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.preview-candidate .header p i {
+    margin-right: 10px;
+}
+
+.preview-candidate .header h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.preview-candidate h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.preview-candidate p {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.preview-candidate .history {
+    margin-bottom: 50px;
+}
+
+.preview-candidate .history h1, .preview-candidate .media h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.preview-candidate .history h6 {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.preview-candidate .media {
+    margin-bottom: 90px;
+}
+
+.preview-candidate .media img {
+    border-radius: 10px;
+}
+
+.preview-candidate .action button {
+    border-radius: 50px;
+    width: 48%;
+    padding: 15px 0;
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.preview-candidate .action button#edit {
+    color: rgba(10, 24, 61, 1);
+    background-color: #FFF;
+}
+
+.preview-candidate .action button#submit {
+    color: #FFF;
+    background-color: rgba(0, 122, 243, 1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* users page  */
+.users-page {
+    margin: 100px 0 50px 0;
+}
+
+.users-page .aside h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.users-page p {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.users-page .aside .searchbar {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    padding: 15px;
+}
+
+.users-page .aside .searchbar input {
+   width: 100%;
+   background-color: transparent;
+}
+
+.users-page .aside .filter {
+    border-radius: 10px;
+    background-color: rgba(12, 33, 87, 1);
+    padding: 17px;
+}
+
+.users-page .aside .filter .category {
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.users-page .aside .filter .category > div {
+    padding: 0 !important;
+}
+
+.users-page .aside .filter .category.active {
+    background-color: turquoise;
+}
+
+.users-page .aside .filter .icon{
+    height: 40px;
+    background-color: #FFF;
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+}
+
+.users-page h3 {
+   font-size: 20px;
+   font-weight: 700;
+}
+
+
+.users-page .main {
+    padding: 21px;
+    border-radius: 10px;
+    background-color: rgba(12, 33, 87, 1);
+}
+
+.users-page .user {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(7, 27, 67, 1);
+}
+
+.users-page .user img {
+    border-radius: 10px;
+}
+
+.users-page .user h4 {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.users-page .user h5 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.users-page .user span {
+    color: rgba(132, 194, 255, 1);
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.users-page .user span i {
+    margin-left: 10px;
+}
+
+/* blacklist modal  */
+#blacklistModal, #blacklistedModal {
+    background-color: rgba(7, 27, 67, 1) !important;
+    padding: 42px 82px !important;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    width: 580px;
+    height: 495px;
+    border: 0 !important;
+    top: 20% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border-radius: 10px;
+}
+
+#blacklistModal h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    max-width: 407px;
+    margin: 0 auto 40px
+}
+
+#blacklistModal img {
+    border-radius: 10px;
+}
+
+#blacklistModal h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+#blacklistModal h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+#blacklistedModal h5 {
+    text-align: center;
+}
+
+#blacklistModal p {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+#blacklistModal button {
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px 19px;
+    display: inline-block;
+    width: 100%;
+}
+
+#blacklistedModal button {
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px 19px;
+    display: inline-block;
+    background-color: rgba(0, 122, 243, 1);
+    width: 70%;
+}
+
+#blacklistModal #cancel-btn {
+    background-color: #FFF;
+    color: rgba(7, 27, 67, 1);
+}
+
+#blacklistModal #action-btn {
+    background-color: rgba(0, 122, 243, 1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* single user */
+.single-user {
+    margin: 100px 0 50px 0
+}
+
+.single-user .header i {
+    font-size: 30px;
+}
+
+.single-user .header h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.single-user .header p {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.single-user .searchbar {
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 15px
+}
+
+.single-user .searchbar input {
+    width: 100%;
+    background-color: transparent;
+    color: #FFF
+}
+
+.single-user .aside .list {
+    padding: 5px 7px;
+    background-color: rgba(12, 33, 87, 1);
+    border-radius: 10px;
+}
+
+.single-user .aside .list .aspirant {
+    padding: 8px 7px;
+    border-radius: 5px;
+}
+
+.single-user .aside .list .aspirant:hover {
+    background-color: rgba(0, 122, 243, 1);
+}
+
+.single-user .aside .list .aspirant img {
+    border-radius: 5px;
+}
+
+.single-user .aside .list .aspirant h3 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+
+
+
+.single-user .main .header {
+    position: relative;
+}
+
+.single-user .main .header .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 5px;
+    box-shadow: -4px 4px 2px 0px rgba(0, 0, 0, 0.08);
+    padding: 20px;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.single-user .main .header .dropdown-content p {
+    color: rgba(10, 24, 61, 1);
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.single-user .main .header .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+.single-user .main .header img {
+    border-radius: 10px;
+}
+
+.single-user .main .header h1 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+.single-user .main .header h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.single-user .main .header p {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.single-user .main .header i {
+    font-size: 15px;
+}
+
+.single-user .main .title p {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 0;
+    color: rgba(0, 122, 243, 1);
+    cursor: pointer;
+}
+
+.single-user .main .title i {
+    font-size: 15px;
+    margin-left: 20px;
+}
+
+
+.single-user .main .post {
+    border-radius: 10px;
+    padding: 19px;
+    background-color: rgba(11, 30, 80, 1);
+}
+
+.single-user .main .post p {
+    font-size: 18px;
+    font-weight: 400
+}
+
+.single-user .main .post img {
+    margin-right: 8px
+}
+
+/* post modal  */
+#postModal {
+    background-color: rgba(7, 27, 67, 1) !important;
+    padding: 85px !important;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    width: 580px;
+    height: 365px;
+    border: 0 !important;
+    top: 20% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border-radius: 10px !important;
+}
+
+#postModal h3 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+#postModal button {
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px 19px;
+    display: inline-block;
+    width: 100%;
+}
+
+#postModal #cancel-btn {
+    background-color: #FFF;
+    color: rgba(7, 27, 67, 1);
+}
+
+#postModal #action-btn {
+    background-color: rgba(0, 122, 243, 1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* countries */
+.countries header {
+    margin: 40px 0 56px
+}
+
+.countries header h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.countries header button {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px 16px;
+    background-color: rgba(0, 122, 243, 1);
+    border-radius: 100px;
+}
+
+.countries header button img {
+    margin-right: 10px
+}
+
+.countries header .searchbar {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    padding: 16px 22px
+}
+
+.countries header .searchbar input {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+    background-color: transparent;
+    color: #FFF
+}
+
+.countries section {
+    border-radius: 10px;
+    padding: 48px 60px;
+    background-color: rgba(10, 24, 61, 1);
+}
+
+.countries section .header {
+    border-bottom: solid 1px rgba(255, 255, 255, 0.1) !important;
+    padding-bottom: 20px;
+    margin-bottom: 21px;
+}
+
+.countries section h2 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+    margin-bottom: 0;
+}
+
+.countries section .img-container {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 42px;
+}
+
+.countries section .img-container img {
+    width: 100%;
+    /* height: auto; */
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+.countries section i.fa-toggle-off,
+.countries section i.fa-toggle-on {
+    font-size: 31px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.countries section p {
+    font-size: 16px;
+    font-weight: 400;
+    color:rgba(255, 255, 255, 0.5)
+}
+
+.countries section i.fa-pen,
+.countries section i.fa-trash-can {
+    font-size: 20px;
+    cursor: pointer;
+    color: rgba(0, 122, 243, 1);
+    /* margin-right: 32px; */
+}
+
+.countries section .country {
+    margin-bottom: 20px;
+}
+
+.countries section .country:last-child {
+    margin-bottom: 0;
+}
+
+
+
+
+/* add country modal  */
+#add-country {
+    background-color: rgba(10, 24, 61, 1) !important;
+    padding: 30px 53px !important;
+    top: 5% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 486px;
+    height: 90%;
+    border-radius: 10px !important;
+    border: none !important;
+}
+
+#add-country::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+#add-country::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+#add-country::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+#add-country i.fa-circle-xmark {
+    float: right;
+    position: absolute;
+    top: 35px;
+    right: 29px
+}
+
+#add-country h1 {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    padding-bottom: 23px;
+    margin-bottom: 13px;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.1) !important;
+}
+
+#add-country label {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    display: block;
+}
+
+#add-country input {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    width: 100%;
+    padding: 15px 26px;
+    color: #FFF
+}
+
+#add-country input#ABBV {
+    margin-bottom: 28px;
+}
+
+#add-country i.fa-circle-plus,
+#add-country i.fa-trash-can {
+    color: rgba(0, 122, 243, 1);
+    cursor: pointer;
+}
+
+#add-country label#file, #add-party label#file {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    border-radius: 100px;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    background-color: #FFF !important;
+    color: rgba(10, 24, 61, 0.52)
+}
+
+#add-country p, #add-party p {
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 28px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.5)
+}
+
+#add-country .category {
+    /* margin-bottom: 26px; */
+    margin-bottom: 15px;
+}
+
+#add-country h6 {
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 0;
+    color: rgba(0, 122, 243, 1);
+    cursor: pointer;
+}
+
+#add-country .subs {
+    border-left: solid 1px rgba(255, 255, 255, 0.5);
+    padding-left: 22px;
+    margin-top: 14px
+}
+
+/* #add-country .subs input{
+    margin-bottom: 21px;
+} */
+
+#add-country button#submit, #add-party button#submit {
+    font-size: 18px;
+    font-weight: 400;
+    background-color: rgba(0, 122, 243, 1);
+    border-radius: 100px;
+    color: #FFF;
+    padding: 14px 46px;
+    display: block;
+    margin: 0 auto
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#add-party {
+    background-color: rgba(10, 24, 61, 1) !important;
+    padding: 30px 53px !important;
+    top: 5% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 468px;
+    height: 90%;
+    border-radius: 10px !important;
+    border: none !important;
+}
+
+#add-party i.fa-circle-xmark {
+    float: right;
+    position: absolute;
+    top: 13px;
+    right: 13px
+}
+
+#add-party h1 {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+    padding-bottom: 23px;
+    margin-bottom: 39px;
+}
+
+#add-party label {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    display: block;
+}
+
+#add-party select, #add-party input {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 36px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    width: 100%;
+    padding: 15px 26px;
+    color: #FFF
+}
+/* 
+#add-party input {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 36px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    width: 100%;
+    padding: 15px 26px;
+    color: #FFF
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* media queries */
+@media (min-width: 1400px) {
+    
+}
+
+@media (min-width: 1120px) and (max-width: 1399px) {
+
+}
+
+@media (min-width: 992px) and (max-width: 1119px) {
+    
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    
+}
+
+@media (min-width: 386px) and (max-width: 575px) {
+    
+}
+
+@media (max-width: 385px) {
+   
+}
+
