@@ -33,6 +33,10 @@ const SinglePoll = () => {
         setLoading(false)
     }
 
+    useEffect(() => {
+        if (id && id !== '') fetchcurrentPoll()
+    }, [id])
+
     // close poll 
     const handleClosePoll = () => {
         // const response = await axios
@@ -56,10 +60,6 @@ const SinglePoll = () => {
             console.log(error)
         })
     }
-
-    useEffect(() => {
-        if (id && id !== '') fetchcurrentPoll()
-    }, [id])
 
     const [title, setTitle] = useState("")
     const [startDate, setStartDate] = useState("")

@@ -139,7 +139,7 @@ function SingleAspirant() {
                             <>
                                 <div className="row mb-4">
                                     <div className="col-lg-4">
-                                        <img src={aspirant.image === undefined ? "/images/user (1) 1.png" : `https://polvote.com/ballot/${aspirant.image}`} id="profile-img" alt="profile-img" />
+                                        <img src={aspirant.image === undefined ? "/images/user (1) 1.png" : `https://polvote.com/ballot/${aspirant.image}`} id="profile-img" alt="profile-img" className="img-fluid" />
                                     </div>
                                     <div className="col-lg-8">
                                         <iframe width="100%" height={280} src={aspirant.videourl.includes("watch") ? `https://www.youtube.com/embed/${aspirant.videourl.substring(32, 43)}` : `https://www.youtube.com/embed/${aspirant.videourl.substring(17, 28)}`} title="YouTube video player" frameBorder={0} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
