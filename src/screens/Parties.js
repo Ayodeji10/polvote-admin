@@ -179,12 +179,12 @@ function Parties() {
                             <h2>STATUS</h2>
                         </div>
                     </div>
-                    {parties.map((party) => {
+                    {parties.map(party => {
                         return (
                             <div className="row align-items-center country" key={party._id}>
                                 <div className="col-lg-4 d-flex align-items-center">
                                     <div className="img-container">
-                                        <img src={`https://polvote.com/ballot/${party.image}`} alt="country" />
+                                        <img src={party.image} alt="country" />
                                     </div>
                                     <h2>{party.partyname}</h2>
                                 </div>

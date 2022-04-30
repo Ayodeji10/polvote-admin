@@ -22,32 +22,49 @@ const SinglePoll = () => {
     // loading 
     const [loading, setLoading] = useState(true)
 
-    // current poll 
-    const [currentPoll, setCurrentPoll] = useState(null)
+    // // current poll 
+    // const [currentPoll, setCurrentPoll] = useState({ aspirant: [] })
 
-    // fetch current poll 
-    const fetchcurrentPoll = async () => {
-        const response = await axios
-            .get(`${API.API_ROOT}/polls/getsinglepoll/${id}`)
-        setCurrentPoll(response.data)
-        setLoading(false)
+    // // fetch current poll 
+    // const fetchcurrentPoll = async () => {
+    //     const response = await axios
+    //         .get(`${API.API_ROOT}/polls/getsinglepoll/${id}`)
+    //     setCurrentPoll(response.data)
+    //     setLoading(false)
+    //     // console.log(response.data)
+    // }
+
+    // useEffect(() => {
+    //     if (id && id !== '') fetchcurrentPoll()
+    // }, [id])
+
+    // current poll and parties
+    const [currentPoll, setCurrentPoll] = useState({ aspirant: [] })
+    const [parties, setParties] = useState([])
+    // fetch current poll and parties
+    const fetchcurrentPollAndParties = () => {
+        const pollAPI = `${API.API_ROOT}/polls/getsinglepoll/${id}`
+        const partiesAPI = `${API.API_ROOT}/parties/parties`
+
+        const getPoll = axios.get(pollAPI)
+        const getParties = axios.get(partiesAPI)
+
+        axios.all([getPoll, getParties]).then(
+            axios.spread((...allData) => {
+                setCurrentPoll(allData[0].data)
+                setParties(allData[1].data)
+                setLoading(false)
+                // console.log([...allData])
+            })
+        )
+
     }
-
     useEffect(() => {
-        if (id && id !== '') fetchcurrentPoll()
+        if (id && id !== '') fetchcurrentPollAndParties()
     }, [id])
 
     // close poll 
     const handleClosePoll = () => {
-        // const response = await axios
-        //     .patch(`${API.API_ROOT}/polls/closepoll/${id}`)
-        // console.log(response)
-        // if (response.status === 200) {
-        //     navigate('/polls')
-        // }
-
-
-
         axios({
             url: `${API.API_ROOT}/polls/closepoll/${id}`,
             method: "patch",
@@ -67,6 +84,11 @@ const SinglePoll = () => {
 
     const openEditModal = () => {
         setTitle(currentPoll.polltitle)
+        // console.log(`${currentPoll.startdate.substring(0, 4)}/${currentPoll.startdate.substring(5, 7)}/${currentPoll.startdate.substring(8, 10)}`)
+        // setStartDate(`${currentPoll.startdate.substring(5, 7)}-${currentPoll.startdate.substring(8, 10)}-${currentPoll.startdate.substring(0, 4)}`)
+        console.log(new Date("2022-12-02").toISOString().substring(0, 10))
+        setStartDate(new Date(`${currentPoll.startdate.substring(5, 7)}-${Math.floor(currentPoll.startdate.substring(8, 10)) + 1}-${currentPoll.startdate.substring(0, 4)}`).toISOString().substring(0, 10))
+        setEndDate(new Date(`${currentPoll.enddate.substring(5, 7)}-${Math.floor(currentPoll.enddate.substring(8, 10)) + 1}-${currentPoll.enddate.substring(0, 4)}`).toISOString().substring(0, 10))
         setEdditPollMOdal(true)
     }
 
@@ -91,6 +113,17 @@ const SinglePoll = () => {
             // console.log(error)
         })
     }
+
+    // get total votes 
+    const [pollToTal, setPollTotal] = useState()
+    let pollVotes = currentPoll.aspirant.reduce((total, aspirant) => {
+        let increament = aspirant.votes.length
+        total += (increament)
+        return total
+    }, 0)
+    useEffect(() => {
+        setPollTotal(pollVotes)
+    }, [currentPoll])
 
     if (loading) {
         return <p>Loading</p>
@@ -174,7 +207,7 @@ const SinglePoll = () => {
                                         <div className="col-lg-6">
                                             <label htmlFor="">Change Start Date</label>
                                             <div className="input d-flex justify-content-between align-items-center">
-                                                <DatePicker
+                                                {/* <DatePicker
                                                     selected={startDate}
                                                     onChange={date => setStartDate(date)}
                                                     dateFormat='yyyy/MM/dd'
@@ -185,14 +218,15 @@ const SinglePoll = () => {
                                                     showYearDropdown
                                                     showMonthDropdown
                                                     placeholderText={currentPoll.startdate.substring(0, 10)}
-                                                />
-                                                <i class="fa-solid fa-calendar-days"></i>
+                                                /> */}
+                                                <input type="date" name="date" id="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+                                                {/* <i class="fa-solid fa-calendar-days"></i> */}
                                             </div>
                                         </div>
                                         <div className="col-lg-6">
                                             <label htmlFor="">Change End Date</label>
                                             <div className="input d-flex justify-content-between align-items-center">
-                                                <DatePicker
+                                                {/* <DatePicker
                                                     selected={endDate}
                                                     onChange={date => setEndDate(date)}
                                                     dateFormat='yyyy/MM/dd'
@@ -203,8 +237,9 @@ const SinglePoll = () => {
                                                     showYearDropdown
                                                     showMonthDropdown
                                                     placeholderText={currentPoll.startdate.substring(0, 10)}
-                                                />
-                                                <i class="fa-solid fa-calendar-days"></i>
+                                                /> */}
+                                                <input type="date" name="date" id="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+                                                {/* <i class="fa-solid fa-calendar-days"></i> */}
                                             </div>
                                         </div>
                                     </div>
@@ -237,6 +272,7 @@ const SinglePoll = () => {
                             </div>
                             <img src={require("../images/Group 169.png").default} className="img-fluid mt-5" alt="" />
                         </div>
+                        {/* leaderboard  */}
                         <div className="leaderboard">
                             <h1>LeaderBoard</h1>
                             {currentPoll.aspirant.map((aspirant) => {
@@ -246,10 +282,12 @@ const SinglePoll = () => {
                                             <div className="col-lg-3 d-flex">
                                                 <div className="row">
                                                     <div className="col-6">
-                                                        <img src={`https://drive.google.com/thumbnail?id=${aspirant.image}`} className="img-fluid" alt="profile-img" />
+                                                        <img src={aspirant.image === undefined ? "/images/user (1) 1.png" : `${aspirant.image}`} alt="candidate-img" className="img-fluid" />
+                                                        {/* <img src={`https://drive.google.com/thumbnail?id=${aspirant.image}`} className="img-fluid" alt="profile-img" /> */}
                                                     </div>
                                                     <div className="col-6">
-                                                        <img src={require("../images/download 1.png").default} className="img-fluid" alt="party" />
+                                                        <img src={parties.filter(party => party.partyname === aspirant.politparty).length === 0 ? "/img/user (1) 1.png" : `${parties.filter(party => party.partyname === aspirant.politparty)[0].image}`} alt="party" className="img-fluid" />
+                                                        {/* <img src={require("../images/download 1.png").default} className="img-fluid" alt="party" /> */}
                                                     </div>
                                                 </div>
                                             </div>
@@ -257,12 +295,12 @@ const SinglePoll = () => {
                                                 <h1 className="mb-0">{aspirant.firstname} {aspirant.lastname}</h1>
                                                 <p>{aspirant.politparty}</p>
                                                 <div className="bar-container">
-                                                    <div className="bar" style={{ width: '60%' }} />
+                                                    <div className="bar" style={{ width: `${(aspirant.votes.length / pollToTal) * 100}` }} />
                                                 </div>
                                             </div>
                                             <div className="col-lg-3 d-flex flex-column align-items-end">
-                                                <h1>25%</h1>
-                                                <p>206,302 Votes</p>
+                                                <h1>{(aspirant.votes.length / pollToTal) * 100}%</h1>
+                                                <p>{aspirant.votes.length} Votes</p>
                                             </div>
                                         </div>
                                     </div>

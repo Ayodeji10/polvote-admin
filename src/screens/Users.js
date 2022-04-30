@@ -6,26 +6,23 @@ import { Link } from "react-router-dom";
 
 const Users = () => {
     const [loading, setLoading] = useState(true)
-    // aspirants array 
-    const [users, setUsers] = useState([])
 
-    // fetch aspirants 
+    // users array 
+    const [users, setUsers] = useState([])
     const fetchUsers = async () => {
         const response = await axios
-            .get(`${API.API_ROOT}/users/users`)
+            .get(`${API.API_ROOT}/users/allusers`)
             .catch((error) => [
                 console.log('Err', error)
             ]);
         setUsers(response.data)
         setLoading(false)
     }
-
     useEffect(() => {
         fetchUsers()
     }, [])
 
-    const [allUsers, setAllUsers] = useState(true)
-    const [activeUsers, setActiveUsers] = useState(false)
+    const [userview, setUserview] = useState("all")
 
     if (loading) {
         return (
@@ -48,10 +45,7 @@ const Users = () => {
                             <img src="images/search.png" alt="" />
                         </div>
                         <div className="filter">
-                            <div className={`row align-items-center category ${allUsers && "active"}`} onClick={() => {
-                                setActiveUsers(false)
-                                setAllUsers(true)
-                            }} >
+                            <div className={`row align-items-center category ${userview === 'all' && "active"}`} onClick={() => setUserview("all")}>
                                 <div className="col-lg-3">
                                     <div className="icon d-flex align-items-center justify-content-center">
                                         <img src="images/user.png" alt="active" className="img-fluid" />
@@ -61,10 +55,7 @@ const Users = () => {
                                     <h3 className="mb-0">All Users</h3>
                                 </div>
                             </div>
-                            <div className={`row align-items-center category ${activeUsers && "active"}`} onClick={() => {
-                                setActiveUsers(true)
-                                setAllUsers(false)
-                            }}>
+                            <div className={`row align-items-center category ${userview === "active" && "active"}`} onClick={() => setUserview("active")} >
                                 <div className="col-lg-3">
                                     <div className="icon d-flex align-items-center justify-content-center">
                                         <img src="images/Vector333.png" alt="active" className="img-fluid" />
@@ -88,17 +79,17 @@ const Users = () => {
                     </div>
                     <div className="col-lg-1" />
                     <div className="col-lg-8 main">
-                        <h3>{activeUsers && "Active Users"}{allUsers && "All Users"}</h3>
-                        <p>{activeUsers && `${users.filter(user => user.status === 1).length} Active Users`}{allUsers && `${users.length} Users`}</p>
+                        <h3>{userview === "all" && "All Users"}{userview === "active" && "Active Users"}</h3>
+                        <p>{userview === "all" && `${users.length} Users`}{userview === "active" && `${users.filter(user => user.status == 1).length} Active Users`}</p>
                         {/* all users  */}
-                        {allUsers &&
+                        {userview === "all" &&
                             <>
                                 {users.map(user => {
                                     return (
                                         <div className="user mb-3" key={user._id}>
                                             <div className="row align-items-center">
                                                 <div className="col-lg-1">
-                                                    <img src={`https://olf.online/ballot/${user.image}`} className="img-fluid" alt="profile-img" />
+                                                    <img src={user.image} className="img-fluid" alt="profile-img" />
                                                 </div>
                                                 <div className="col-lg-3">
                                                     <h3>{user.name}</h3>
@@ -123,14 +114,14 @@ const Users = () => {
                         }
 
                         {/* active users  */}
-                        {activeUsers &&
+                        {userview === "active" &&
                             <>
-                                {users.filter(user => user.status === 1).map(user => {
+                                {users.filter(user => user.status == 1).map(user => {
                                     return (
                                         <div className="user mb-3" key={user._id}>
                                             <div className="row align-items-center">
                                                 <div className="col-lg-1">
-                                                    <img src={`https://olf.online/ballot/${user.image}`} className="img-fluid" alt="profile-img" />
+                                                    <img src={user.image} className="img-fluid" alt="profile-img" />
                                                 </div>
                                                 <div className="col-lg-3">
                                                     <h3>{user.name}</h3>

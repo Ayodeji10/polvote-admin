@@ -237,14 +237,12 @@ function Countries() {
             headers: { "Content-Type": "multipart/form-data" },
             data: fd
         }).then((response) => {
-            console.log(editId)
-            console.log(response)
+            // console.log(response)
             setLoading(false)
-            // window.location.reload()
+            window.location.reload()
         }, (error) => {
-            console.log(editId)
             setLoading(false)
-            console.log(error)
+            // console.log(error)
             setError('Something went wrong, please try again')
         })
     }
@@ -326,7 +324,7 @@ function Countries() {
                             <div className="row align-items-center country" key={country._id}>
                                 <div className="col-lg-4 d-flex align-items-center">
                                     <div className="img-container">
-                                        <img src={`https://polvote.com/ballot/${country.image}`} alt="country" />
+                                        <img src={country.image} alt="country" />
                                     </div>
                                     <h2>{country.country}</h2>
                                 </div>

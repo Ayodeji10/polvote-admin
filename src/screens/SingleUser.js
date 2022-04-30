@@ -9,10 +9,7 @@ import Modal from 'react-modal'
 Modal.setAppElement('#root')
 
 const SingleUsers = () => {
-    const [flaggedPost, setFlaggedPost] = useState(false)
-
-    // context 
-    // const { context, setContext } = useContext(DataContext)
+    const [postView, setPostView] = useState("all")
 
     // delete modals
     const [deleteUserModal, setDeleteUserModal] = useState(false)
@@ -28,35 +25,17 @@ const SingleUsers = () => {
 
     // all users  
     const [users, setUsers] = useState([])
-    // fetch aspirants 
+    // fetch users 
     const fetchUsers = async () => {
         const response = await axios
-            .get(`${API.API_ROOT}/users/users`)
+            .get(`${API.API_ROOT}/users/allusers`)
             .catch((error) => [
                 console.log('Err', error)
             ]);
         setUsers(response.data)
-        // setLoading(false)
     }
-
     useEffect(() => {
         fetchUsers()
-    }, [])
-
-    // stories 
-    const [stories, setStories] = useState([])
-    // fetch stories
-    const fetchStories = async () => {
-        const response = await axios
-            .get(`${API.API_ROOT}/story`)
-            .catch((error) => [
-                console.log('Err', error)
-            ]);
-        setStories(response.data)
-    }
-
-    useEffect(() => {
-        fetchStories()
     }, [])
 
     // loading 
@@ -75,10 +54,43 @@ const SingleUsers = () => {
         setCurrentUser(response.data)
         setPageLoading(false)
     }
-
     useEffect(() => {
         if (id && id !== '') fetchCurrentUser()
     }, [id])
+
+    // fetch stories
+    const [stories, setStories] = useState([])
+    const fetchStories = async () => {
+        const response = await axios
+            .get(`${API.API_ROOT}/story`)
+            .catch((error) => [
+                console.log('Err', error)
+            ]);
+        setStories(response.data)
+    }
+    useEffect(() => {
+        fetchStories()
+    }, [])
+
+    // blacklist user 
+    const [blacklistLoader, setBlacklistLoader] = useState(false)
+    const blacklistUser = () => {
+        setBlacklistLoader(true)
+        axios({
+            url: `${API.API_ROOT}/users/blacklisted/${id}`,
+            method: "patch",
+            headers: { "Content-Type": "application/json" },
+        }).then((response) => {
+            setBlacklistLoader(false)
+            console.log(response)
+            setBlacklistModal(false)
+            setUserBlacklistedModal(true)
+            // window.location.reload();
+        }, (error) => {
+            setBlacklistLoader(false)
+            console.log(error)
+        })
+    }
 
     if (pageLoading) {
         return (
@@ -118,10 +130,10 @@ const SingleUsers = () => {
                                         <div className="aspirant">
                                             <div className="row align-items-center">
                                                 <div className="col-lg-2">
-                                                    <img src={`https://olf.online/ballot/${user.image}`} className="img-fluid" alt="profile-img" />
+                                                    <img src={user.image} className="img-fluid" alt="profile-img" />
                                                 </div>
                                                 <div className="col-lg-8">
-                                                    <h3 className="mb-0">{user.name}</h3>
+                                                    <h3 className="mb-0">{user.firstname} {user.lastname}</h3>
                                                 </div>
                                                 <div className="col-lg-2 d-flex justify-content-end">
                                                     <i className="fas fa-ellipsis-v" />
@@ -136,7 +148,7 @@ const SingleUsers = () => {
                     <div className="col-lg-8 main">
                         <div className="row header mb-5">
                             <div className=" col-lg-3">
-                                <img src={`https://olf.online/ballot/${currentUser.image}`} className="img-fluid" alt="profile-img" />
+                                <img src={currentUser.image} className="img-fluid" alt="profile-img" />
                             </div>
                             <div className="col-lg-8">
                                 <h1>{currentUser.name}</h1>
@@ -153,7 +165,7 @@ const SingleUsers = () => {
                                 <div className="dropdown">
                                     <i className="fas fa-ellipsis-v" />
                                     <div className="dropdown-content">
-                                        <p className="mb-2" onClick={() => setBlacklistModal(true)}>Add to Blacklist</p>
+                                        <p className="mb-2" onClick={() => setBlacklistModal(true)}>{currentUser.status === "2" ? "Remove from Blacklist" : "Add to Blacklist"}</p>
                                         <p onClick={() => setDeleteUserModal(true)}>Delete User’s Account</p>
                                     </div>
                                 </div>
@@ -198,10 +210,10 @@ const SingleUsers = () => {
                             {/* blacklistModal  */}
                             <Modal isOpen={blacklistUserModal} onRequestClose={() => setBlacklistModal(false)} id="blacklistModal">
                                 <div>
-                                    <h1>Are you sure you want to add user to blacklist?</h1>
+                                    <h1>Are you sure you want to {currentUser.status === "2" ? "remove" : "add"} user {currentUser.status === "2" ? "from" : "to"} blacklist?</h1>
                                     <div className="row align-items-center mb-5">
                                         <div className="col-lg-5">
-                                            <img src={`https://olf.online/ballot/${currentUser.image}`} className="img-fluid" alt="profile-img" />
+                                            <img src={currentUser.image} className="img-fluid" alt="profile-img" />
                                         </div>
                                         <div className="col-lg-7">
                                             <h3>{currentUser.name}</h3>
@@ -215,10 +227,7 @@ const SingleUsers = () => {
                                                 <button id="cancel-btn" onClick={() => setBlacklistModal(false)}>Cancel</button>
                                             </div>
                                             <div className="col-lg-7">
-                                                <button id="action-btn" onClick={() => {
-                                                    setBlacklistModal(false)
-                                                    setUserBlacklistedModal(true)
-                                                }}>Add to Blacklist</button>
+                                                <button id="action-btn" onClick={blacklistUser}>{blacklistLoader ? "loading..." : `${currentUser.status === "2" ? "Remove from" : "Add to"} Blacklist`}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -228,240 +237,103 @@ const SingleUsers = () => {
                             <Modal isOpen={userBlacklistedModal} onRequestClose={() => setUserBlacklistedModal(false)} id="blacklistedModal">
                                 <div className="d-flex flex-column align-items-center justify-content-center">
                                     <img src="images/checked (1) 1.png" alt="" className="mb-5" />
-                                    <h5 className="mb-5">User account has been successfully added to Blacklist</h5>
+                                    <h5 className="mb-5">User account has been successfully {currentUser.status === "2" ? "Removed from" : "added to"} Blacklist</h5>
                                     <button id="close-close-poll" onClick={() => setUserBlacklistedModal(false)}>Close</button>
                                 </div>
                             </Modal>
-
-
-
                         </div>
                         <div className="d-flex justify-content-between align-items-center title">
-                            <h1>{!flaggedPost ? "Posts" : "Flagged Posts"}</h1>
-                            {!flaggedPost ?
-                                <p onClick={() => setFlaggedPost(true)}>Flagged Posts<i className="fas fa-angle-right" /></p>
+                            <h1>{postView === "all" ? "Posts" : "Flagged Posts"}</h1>
+                            {postView === "all" ?
+                                <p onClick={() => setPostView('flagged')}>Flagged Posts<i className="fas fa-angle-right" /></p>
                                 :
-                                <p onClick={() => setFlaggedPost(false)}>All Posts<i className="fas fa-angle-right" /></p>
+                                <p onClick={() => setPostView('all')}>All Posts<i className="fas fa-angle-right" /></p>
                             }
                         </div>
-                        {/* flagged post  */}
-                        {flaggedPost &&
+
+                        {/* all posts  */}
+                        {postView === "all" &&
                             <>
-                                {/* {stories.filter((story) => story.userid ===)} */}
-                                <div className="post mb-3">
-                                    <div className="row align-items-center">
-                                        <div className=" col-lg-11">
-                                            <p>We were paid to come and support the Nigerian Government</p>
-                                            <div className="row">
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/eye 1.png" alt="" />120</h6>
-                                                </div>
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/blogging 1.png" alt="" />82</h6>
+                                {stories.filter((story) => story.userid === currentUser._id).map((story, index) => {
+                                    return (
+                                        <>
+                                            <div className="post mb-3">
+                                                <div className="row align-items-center">
+                                                    <div className=" col-lg-11">
+                                                        <p>{story.story}</p>
+                                                        <div className="row">
+                                                            <div className="col-lg-2">
+                                                                <h6 className="mb-0"><img src="/images/eye 1.png" alt="" />{story.storyviews.length}</h6>
+                                                            </div>
+                                                            <div className="col-lg-2">
+                                                                <h6 className="mb-0"><img src="/images/blogging 1.png" alt="" />{story.comments.length}</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-lg-1">
+                                                        <img src="/images/flag.png" alt="flag" onClick={() => setFlagPostModal(true)} />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="col-lg-1">
-                                            <img src="images/flag2.png" alt="" onClick={() => setUnflagPostModal(true)} />
-                                        </div>
-                                    </div>
-                                </div>
 
-                                {/* unflag post modal  */}
-                                <Modal isOpen={unflagPostModal} onRequestClose={() => setUnflagPostModal(false)} id="postModal">
-                                    <h3>You are about to unflag a post</h3>
-                                    <div className="row">
-                                        <div className="col-lg-6">
-                                            <button id="cancel-btn" onClick={() => setUnflagPostModal(false)}>Cancel</button>
-                                        </div>
-                                        <div className="col-lg-6">
-                                            <button id="action-btn">Proceed</button>
-                                        </div>
-                                    </div>
-                                </Modal>
-
-                                <div className="post mb-3">
-                                    <div className="row align-items-center">
-                                        <div className=" col-lg-11">
-                                            <p>We were paid to come and support the Nigerian Government</p>
-                                            <div className="row">
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/eye 1.png" alt="" />120</h6>
+                                            {/* flag post modal  */}
+                                            <Modal isOpen={flagPostModal} onRequestClose={() => setFlagPostModal(false)} id="postModal">
+                                                <h3>You are about to flag a post</h3>
+                                                <div className="row">
+                                                    <div className="col-lg-6">
+                                                        <button id="cancel-btn" onClick={() => setFlagPostModal(false)}>Cancel</button>
+                                                    </div>
+                                                    <div className="col-lg-6">
+                                                        <button id="action-btn">Proceed</button>
+                                                    </div>
                                                 </div>
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/blogging 1.png" alt="" />82</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-1">
-                                            <img src="images/flag2.png" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="post mb-3">
-                                    <div className="row align-items-center">
-                                        <div className=" col-lg-11">
-                                            <p>We were paid to come and support the Nigerian Government</p>
-                                            <div className="row">
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/eye 1.png" alt="" />120</h6>
-                                                </div>
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/blogging 1.png" alt="" />82</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-1">
-                                            <img src="images/flag2.png" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="post mb-3">
-                                    <div className="row align-items-center">
-                                        <div className=" col-lg-11">
-                                            <p>We were paid to come and support the Nigerian Government</p>
-                                            <div className="row">
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/eye 1.png" alt="" />120</h6>
-                                                </div>
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/blogging 1.png" alt="" />82</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-1">
-                                            <img src="images/flag2.png" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="post mb-3">
-                                    <div className="row align-items-center">
-                                        <div className=" col-lg-11">
-                                            <p>We were paid to come and support the Nigerian Government</p>
-                                            <div className="row">
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/eye 1.png" alt="" />120</h6>
-                                                </div>
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/blogging 1.png" alt="" />82</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-1">
-                                            <img src="images/flag2.png" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
+                                            </Modal>
+                                        </>
+                                    )
+                                })}
                             </>
                         }
 
-                        {/* all posts  */}
-                        {!flaggedPost &&
+                        {/* flagged post  */}
+                        {postView !== "all" &&
                             <>
-                                <div className="post mb-3">
-                                    <div className="row align-items-center">
-                                        <div className=" col-lg-11">
-                                            <p>We were paid to come and support the Nigerian Government</p>
-                                            <div className="row">
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/eye 1.png" alt="" />120</h6>
-                                                </div>
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/blogging 1.png" alt="" />82</h6>
+                                {stories.filter((story) => story.userid === currentUser._id && story.status == 1).map((story, index) => {
+                                    return (
+                                        <>
+                                            <div className="post mb-3">
+                                                <div className="row align-items-center">
+                                                    <div className=" col-lg-11">
+                                                        <p>{story.story}</p>
+                                                        <div className="row">
+                                                            <div className="col-lg-2">
+                                                                <h6 className="mb-0"><img src="images/eye 1.png" alt="" />120</h6>
+                                                            </div>
+                                                            <div className="col-lg-2">
+                                                                <h6 className="mb-0"><img src="images/blogging 1.png" alt="" />82</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="col-lg-1">
+                                                        <img src="/images/flag2.png" alt="" onClick={() => setUnflagPostModal(true)} />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div className="col-lg-1">
-                                            <img src="images/flag.png" alt="flag" onClick={() => setFlagPostModal(true)} />
-                                        </div>
-                                    </div>
-                                </div>
 
-                                {/* flag post modal  */}
-                                <Modal isOpen={flagPostModal} onRequestClose={() => setFlagPostModal(false)} id="postModal">
-                                    <h3>You are about to flag a post</h3>
-                                    <div className="row">
-                                        <div className="col-lg-6">
-                                            <button id="cancel-btn" onClick={() => setFlagPostModal(false)}>Cancel</button>
-                                        </div>
-                                        <div className="col-lg-6">
-                                            <button id="action-btn">Proceed</button>
-                                        </div>
-                                    </div>
-                                </Modal>
-
-                                <div className="post mb-3">
-                                    <div className="row align-items-center">
-                                        <div className=" col-lg-11">
-                                            <p>We were paid to come and support the Nigerian Government</p>
-                                            <div className="row">
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/eye 1.png" alt="" />120</h6>
+                                            {/* unflag post modal  */}
+                                            <Modal isOpen={unflagPostModal} onRequestClose={() => setUnflagPostModal(false)} id="postModal">
+                                                <h3>You are about to unflag a post</h3>
+                                                <div className="row">
+                                                    <div className="col-lg-6">
+                                                        <button id="cancel-btn" onClick={() => setUnflagPostModal(false)}>Cancel</button>
+                                                    </div>
+                                                    <div className="col-lg-6">
+                                                        <button id="action-btn">Proceed</button>
+                                                    </div>
                                                 </div>
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/blogging 1.png" alt="" />82</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-1">
-                                            <img src="images/flag.png" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="post mb-3">
-                                    <div className="row align-items-center">
-                                        <div className=" col-lg-11">
-                                            <p>We were paid to come and support the Nigerian Government</p>
-                                            <div className="row">
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/eye 1.png" alt="" />120</h6>
-                                                </div>
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/blogging 1.png" alt="" />82</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-1">
-                                            <img src="images/flag.png" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="post mb-3">
-                                    <div className="row align-items-center">
-                                        <div className=" col-lg-11">
-                                            <p>We were paid to come and support the Nigerian Government</p>
-                                            <div className="row">
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/eye 1.png" alt="" />120</h6>
-                                                </div>
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/blogging 1.png" alt="" />82</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-1">
-                                            <img src="images/flag.png" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="post mb-3">
-                                    <div className="row align-items-center">
-                                        <div className=" col-lg-11">
-                                            <p>We were paid to come and support the Nigerian</p>
-                                            <div className="row">
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/eye 1.png" alt="" />120</h6>
-                                                </div>
-                                                <div className="col-lg-2">
-                                                    <h6 className="mb-0"><img src="images/blogging 1.png" alt="" />82</h6>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-1">
-                                            <img src="images/flag.png" alt="" />
-                                        </div>
-                                    </div>
-                                </div>
+                                            </Modal>
+                                        </>
+                                    )
+                                })}
                             </>
                         }
                     </div>

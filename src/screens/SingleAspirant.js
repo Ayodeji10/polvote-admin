@@ -30,6 +30,7 @@ function SingleAspirant() {
     const fetchSingleAspirant = async () => {
         const response = await axios
             .get(`${API.API_ROOT}/aspirant/getoneaspirant/${id}`)
+        // console.log(response.data)
         setAspirant(response.data)
         setLoading(false)
     }
@@ -122,8 +123,7 @@ function SingleAspirant() {
                                         <div className={`person d-flex justify-content-between align-items-center ${aspirant._id === id && "active"} ${aspirant.status == 0 && 'pending'} ${aspirant.status == 1 && 'approved'} ${aspirant.status == 2 && 'rejected'}`}>
                                             <div className="d-flex align-items-center">
                                                 <div className="img-container">
-                                                    <img src={aspirant.image === undefined ? "/images/user (1) 1.png" : `https://polvote.com/ballot/${aspirant.image}`} alt="profile-img" />
-                                                    {/* <img src="images/politician.png" alt="profile-img" /> */}
+                                                    <img src={aspirant.image === undefined ? "/images/user (1) 1.png" : `${aspirant.image}`} alt="profile-img" />
                                                 </div>
                                                 <p className="mb-0">{aspirant.firstname} {aspirant.lastname}</p>
                                             </div>

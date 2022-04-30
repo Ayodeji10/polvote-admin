@@ -9,6 +9,7 @@ Modal.setAppElement('#root')
 const Aspirants = () => {
     // aspirants array 
     const [aspirants, setAspirants] = useState([])
+    const [aspirantList, setAspirantList] = useState([])
     // fetch aspirants 
     const fetchAspirants = async () => {
         const response = await axios
@@ -17,6 +18,7 @@ const Aspirants = () => {
                 console.log('Err', error)
             ]);
         setAspirants(response.data)
+        setAspirantList(response.data)
     }
 
     useEffect(() => {
@@ -25,6 +27,26 @@ const Aspirants = () => {
 
     // view 
     const [view, setView] = useState("grid")
+
+    const sortAspirants = (param) => {
+        switch (param) {
+            case 'declined':
+                const declined = aspirantList.filter(aspirant => aspirant.status === "2")
+                setAspirants(declined)
+                break;
+            case 'pending':
+                const pending = aspirantList.filter(aspirant => aspirant.status === "0")
+                setAspirants(pending)
+                break;
+            case 'approved':
+                const approved = aspirantList.filter(aspirant => aspirant.status === "1")
+                setAspirants(approved)
+                break;
+            default:
+                setAspirants(aspirantList)
+                break;
+        }
+    }
 
     return (
         <div className="container">
@@ -49,10 +71,10 @@ const Aspirants = () => {
                 <div className="row">
                     <div className="col-lg-3">
                         <div className="sort">
-                            <button>All Aspirants</button>
-                            <button>Declined Profiles</button>
-                            <button>Pending Requests</button>
-                            <button>Approved Profiles</button>
+                            <button onClick={() => sortAspirants("all")}>All Aspirants</button>
+                            <button onClick={() => sortAspirants("declined")}>Declined Profiles</button>
+                            <button onClick={() => sortAspirants("pending")}>Pending Requests</button>
+                            <button onClick={() => sortAspirants("approved")}>Approved Profiles</button>
                         </div>
                     </div>
                     <div className="col-lg-9">
@@ -67,7 +89,7 @@ const Aspirants = () => {
                                                     <i className="fa-solid fa-ellipsis" />
                                                 </div>
                                                 <div className="img-container">
-                                                    <img src={aspirant.image === undefined ? "/images/user (1) 1.png" : `https://polvote.com/ballot/${aspirant.image}`} alt="profile-img" />
+                                                    <img src={aspirant.image === undefined ? "/images/user (1) 1.png" : `${aspirant.image}`} alt="profile-img" />
                                                 </div>
                                                 <h4>{aspirant.firstname}<br />{aspirant.lastname}</h4>
                                                 <div className="d-flex justify-content-between align-items-center">
@@ -102,9 +124,9 @@ const Aspirants = () => {
                                             <div className="row align-items-center">
                                                 <div className=" col-lg-5 d-flex align-items-center">
                                                     <div className="img-container">
-                                                        <img src={aspirant.image === undefined ? "/images/user (1) 1.png" : `https://polvote.com/ballot/${aspirant.image}`} alt="profile-img" />
+                                                        <img src={aspirant.image === undefined ? "/images/user (1) 1.png" : `${aspirant.image}`} alt="profile-img" />
                                                     </div>
-                                                    <h4 className="mb-0">Mitchelle Patience</h4>
+                                                    <h4 className="mb-0">{aspirant.firstname} {aspirant.lastname}</h4>
                                                 </div>
                                                 <div className="col-lg-2">
                                                     <h5 className="mb-0"><i className="fa-solid fa-circle" />{aspirant.status == 0 && "Pending"}{aspirant.status == 1 && "Approved"}{aspirant.status == 2 && "Declined"}</h5>

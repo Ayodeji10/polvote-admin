@@ -10,6 +10,20 @@ import { Chart as ChartJS } from 'chart.js/auto'
 const Home = () => {
     const [pageLoading, setPageLoading] = useState(true)
 
+    // fetch users 
+    const [users, setUsers] = useState("")
+    const fetchUsers = async () => {
+        const response = await axios
+            .get(`${API.API_ROOT}/users/allusers`)
+            .catch((error) => [
+                console.log('Err', error)
+            ]);
+        setUsers(response.data.length)
+    }
+    useEffect(() => {
+        fetchUsers()
+    }, [])
+
     // polls array 
     const [polls, setPolls] = useState([])
     const [parties, setParties] = useState([])
@@ -76,7 +90,11 @@ const Home = () => {
                                 <div className="row">
                                     <div className="col-lg-6">
                                         <p>Total Poll</p>
-                                        <h1>2,024,021</h1>
+                                        <h1>{poll.aspirant.reduce((total, aspirant) => {
+                                            let increament = aspirant.votes.length
+                                            total += (increament)
+                                            return total
+                                        }, 0)}</h1>
                                     </div>
                                     <div className="col-lg-6 d-flex flex-column justify-content-end align-items-end">
                                         <h5>Closing Date</h5>
@@ -130,15 +148,19 @@ const Home = () => {
                                 {aspirant.map((each, index) => {
                                     return (
                                         <div className="candidate d-flex justify-content-between align-items-center mb-4" key={index}>
-                                            <img src={`https://polvote.com/ballot/${each.image}`} className="img-fluid" alt="profile-img" />
-                                            <img src={each.image === undefined ? "images/download 1.png" : `https://polvote.com/ballot/${parties.filter(party => party.partyname === each.politparty)[0].image}`} alt="party" className="img-fluid" />
+                                            <img src={each.image === undefined ? "/images/user (1) 1.png" : `${each.image}`} alt="candidate-img" className="img-fluid" />
+                                            <img src={parties.filter(party => party.partyname === each.politparty).length === 0 ? "/img/user (1) 1.png" : `${parties.filter(party => party.partyname === each.politparty)[0].image}`} alt="party" className="img-fluid" />
                                             <div>
                                                 <h3>{each.firstname} {each.lastname}</h3>
                                                 <h4 className="mb-0">{each.politparty}</h4>
                                             </div>
                                             <div className="d-flex flex-column align-items-end">
-                                                <h3>25%</h3>
-                                                <h5>206,302 Votes</h5>
+                                                <h3>{(each.votes.length / aspirant.reduce((total, aspirant) => {
+                                                    let increament = aspirant.votes.length
+                                                    total += (increament)
+                                                    return total
+                                                }, 0)) * 100}%</h3>
+                                                <h5>{each.votes.length} Votes</h5>
                                             </div>
                                         </div>
                                     )
@@ -149,7 +171,7 @@ const Home = () => {
                             <div className="row">
                                 <div className="col-lg-6">
                                     <h3>Active Users</h3>
-                                    <h1 className="mb-0">200,034</h1>
+                                    <h1 className="mb-0">{users}</h1>
                                 </div>
                                 <div className="col-lg-6 d-flex justify-content-end align-items-end">
                                     <Link to="/users"><p className="mb-0">See All Users<i className=" fas fa-angle-right" /></p></Link>
