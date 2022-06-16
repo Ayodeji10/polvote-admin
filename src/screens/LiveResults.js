@@ -26,6 +26,7 @@ function LiveResults() {
     // polls array 
     const [polls, setPolls] = useState([])
     const [parties, setParties] = useState([])
+    const [pollsFilter, setPollsFilter] = useState([])
 
     // fetch current poll and parties
     const fetchcurrentPollAndParties = () => {
@@ -38,6 +39,7 @@ function LiveResults() {
         axios.all([getPoll, getParties]).then(
             axios.spread((...allData) => {
                 setPolls(allData[0].data)
+                setPollsFilter(allData[0].data)
                 setParties(allData[1].data)
             })
         )
@@ -47,16 +49,23 @@ function LiveResults() {
         fetchcurrentPollAndParties()
     }, [])
 
+    const searchProfile = (e) => {
+        // console.log(e.target.value)
+        const filteredPolls = polls.filter(poll => `${poll.polltitle}`.toLowerCase().includes(e.target.value.toLowerCase()) && poll.status === "0")
+        // console.log(people)
+        setPollsFilter(filteredPolls)
+    }
+
     return (
         <div className="container mt-4 live">
             <div className="d-flex align-items-center" style={{ marginBottom: "92px" }}>
                 <img src="images/Logo.png" alt="logo" id='logo' />
                 <div className="searchbar d-flex align-items-center">
-                    <input type="text" placeholder='Search for Poll' />
+                    <input type="text" placeholder='Search for Poll' onChange={(e) => searchProfile(e)} />
                     <i className="fa-solid fa-magnifying-glass" />
                 </div>
             </div>
-            {polls.map((poll, index) => {
+            {pollsFilter.map((poll, index) => {
                 return <LivePollCard poll={poll} key={index} parties={parties} />
             })}
             <button id='logout' onClick={() => {

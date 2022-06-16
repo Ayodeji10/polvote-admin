@@ -28,7 +28,7 @@ function LivePollCard({ poll, parties }) {
                 </div>
             </div>
             <Modal isOpen={pollModal} onRequestClose={() => setPollModal(false)} id="LivePollModal">
-                <i className="fa-solid fa-circle-xmark" />
+                <i className="fa-solid fa-circle-xmark" onClick={() => setPollModal(false)} />
                 <h1>{poll.polltitle}</h1>
                 <h2>LeaderBoard</h2>
                 <div className="candidates">
