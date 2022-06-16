@@ -2,11 +2,25 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API } from "../components/apiRoot";
 import Nav from "../components/nav";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Modal from 'react-modal'
 Modal.setAppElement('#root')
 
 const Aspirants = () => {
+    // history 
+    const navigate = useNavigate()
+
+    // redirect if user is not logged in 
+    useEffect(() => {
+        if (localStorage.getItem('admin_token') === null) {
+            if (localStorage.getItem('pollofficer_token') === null) {
+                navigate('/')
+            } else {
+                navigate('/liveresults')
+            }
+        }
+    }, [])
+
     // aspirants array 
     const [aspirants, setAspirants] = useState([])
     const [aspirantList, setAspirantList] = useState([])
@@ -57,7 +71,7 @@ const Aspirants = () => {
                 <div className="row header mt-4 mb-5">
                     <div className="col-lg-3">
                         <h1>Aspirant Profiles</h1>
-                        <p className="mb-0">1080 Aspirant Profiles</p>
+                        <p className="mb-0">{aspirants.length} Aspirant Profiles</p>
                     </div>
                     <div className="col-lg-9 d-flex align-items-center justify-content-end">
                         <img src="images/sort.png" alt="sort" />

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Nav from '../components/nav'
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API } from "../components/apiRoot";
 import Modal from 'react-modal'
@@ -7,6 +8,20 @@ import { Children } from 'react/cjs/react.production.min';
 Modal.setAppElement('#root')
 
 function Countries() {
+    // history 
+    const navigate = useNavigate()
+
+    // redirect if user is not logged in 
+    useEffect(() => {
+        if (localStorage.getItem('admin_token') === null) {
+            if (localStorage.getItem('pollofficer_token') === null) {
+                navigate('/')
+            } else {
+                navigate('/liveresults')
+            }
+        }
+    }, [])
+
     const [addCountryModal, setAddCountryModal] = useState(false)
     const [editCountryModal, setEditCountryModal] = useState(false)
 

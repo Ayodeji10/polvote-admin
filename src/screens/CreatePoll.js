@@ -10,12 +10,24 @@ const CreatePoll = () => {
     // navigate 
     const navigate = useNavigate()
 
+    // redirect if user is not logged in 
+    useEffect(() => {
+        if (localStorage.getItem('admin_token') === null) {
+            if (localStorage.getItem('pollofficer_token') === null) {
+                navigate('/')
+            } else {
+                navigate('/liveresults')
+            }
+        }
+    }, [])
+
     const [countrySelected, setCountrySelected] = useState("")
     const [categorySelected, setCategorySelected] = useState("")
     const [subCategorySelected, setSubCategorySelected] = useState(null)
     const [title, setTitle] = useState("")
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
+    const [livevotedate, setLivevotedate] = useState("")
 
     // fetch countries 
     const [countries, setCountries] = useState([])
@@ -44,7 +56,8 @@ const CreatePoll = () => {
             subCategory: subCategorySelected,
             polltitle: title,
             startdate: startDate,
-            enddate: endDate
+            enddate: endDate,
+            livevotedate: livevotedate
         };
         setLoading(true)
         setError("")
@@ -124,7 +137,7 @@ const CreatePoll = () => {
                         <div className="col-lg-6">
                             <div className="input">
                                 <label htmlFor="start">Start Date</label>
-                                <DatePicker
+                                {/* <DatePicker
                                     selected={startDate}
                                     onChange={date => setStartDate(date)}
                                     dateFormat='yyyy/MM/dd'
@@ -134,13 +147,14 @@ const CreatePoll = () => {
                                     showYearDropdown
                                     showMonthDropdown
                                     placeholderText="DD/MM/YYYY"
-                                />
+                                /> */}
+                                <input type="date" name="date" id="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
                             </div>
                         </div>
                         <div className="col-lg-6">
                             <div className="input">
                                 <label htmlFor="end">End Date</label>
-                                <DatePicker
+                                {/* <DatePicker
                                     selected={endDate}
                                     onChange={date => setEndDate(date)}
                                     dateFormat='yyyy/MM/dd'
@@ -151,9 +165,14 @@ const CreatePoll = () => {
                                     showYearDropdown
                                     showMonthDropdown
                                     placeholderText="DD/MM/YYYY"
-                                />
+                                /> */}
+                                <input type="date" name="date" id="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
                             </div>
                         </div>
+                    </div>
+                    <div className="input">
+                        <label htmlFor="live">Change Live Start Date</label>
+                        <input type="date" name="date" id="live" value={livevotedate} onChange={(e) => setLivevotedate(e.target.value)} />
                     </div>
                     <p>{error}</p>
                     <button onClick={(e) => createPoll(e)}>{loading ? "loading..." : "Proceed"}<i className="fas fa-angle-right" /></button>

@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import Nav from '../components/nav'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { API } from "../components/apiRoot";
 import Modal from 'react-modal'
 Modal.setAppElement('#root')
 
 function Parties() {
+    // history 
+    const navigate = useNavigate()
+
+    // redirect if user is not logged in 
+    useEffect(() => {
+        if (localStorage.getItem('admin_token') === null) {
+            if (localStorage.getItem('pollofficer_token') === null) {
+                navigate('/')
+            } else {
+                navigate('/liveresults')
+            }
+        }
+    }, [])
+
     const [addPartyModal, setAddPartyModal] = useState(false)
 
     // fetch parties and countries

@@ -1,5 +1,5 @@
 /* resets  */
-body  {
+body {
     background-image: url('../src/bg-img/Rectangle\ 32.png');
     background-size: cover;
     background-repeat: no-repeat;
@@ -21,38 +21,25 @@ p,
 span,
 button,
 label {
-    font-family: 'Nunito', sans-serif;  
+    font-family: 'Nunito', sans-serif;
     text-decoration: none !important;
     color: #FFF;
     outline: none !important;
     border: none;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
     outline: none !important;
     border: none;
 }
 
-.login-form input {
-    background-color: #36425E;
-    color: #FFF !important;
-    border: 0;
-    text-decoration: none !important;
-    outline: none !important;
-}
-
-.login-form input::placeholder {
-  font-size: 16px;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.5);
-  opacity: 0.25;
-  font-family: 'Questrial', sans-serif;
-  opacity: 40%;
-}
-
-.react-datepicker__month-option, react-datepicker__year-option {
+.react-datepicker__month-option,
+react-datepicker__year-option {
     color: black !important
 }
+
 /* presets  */
 
 /* navbar  */
@@ -82,31 +69,129 @@ nav li a {
 
 /* toggle  */
 .navbar-toggler {
-  background: #007AF3 !important;
-  border: none;
-  padding: 10px 6px !important;
-  outline: none !important;
+    background: #007AF3 !important;
+    border: none;
+    padding: 10px 6px !important;
+    outline: none !important;
 }
 
 .navbar-toggler span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  border: 1px;
-  background: white;
-  border: solid 1px white;
+    display: block;
+    width: 22px;
+    height: 2px;
+    border: 1px;
+    background: white;
+    border: solid 1px white;
 }
 
-.navbar-toggler span + span {
-  width: 18px;
-  margin: 4px 0 0 4px;
-  width: 22px;
+.navbar-toggler span+span {
+    width: 18px;
+    margin: 4px 0 0 4px;
+    width: 22px;
 }
 
-.navbar-toggler span + span + span {
+.navbar-toggler span+span+span {
     width: 10px;
     margin-left: 4px;
 }
+
+/* login  */
+.login .row {
+    margin-top: 100px;
+}
+
+.login .login-form {
+    border-radius: 20px;
+    padding: 51px 45px;
+    border: solid 1px rgb(210, 210, 210, 0.2) !important;
+}
+
+.login .login-form h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.login .login-form p {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    max-width: 336px;
+    margin: 0 auto 50px;
+}
+
+.login .login-form label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.login .login-form input {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 25px;
+    padding: 16px 24px;
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #FFF
+}
+
+.login .login-form .remember input {
+    width: unset;
+    margin-right: 10px;
+    margin-bottom: unset;
+}
+
+.login .login-form .remember label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: unset;
+    color: rgba(82, 169, 255, 1)
+}
+
+.login .login-form button {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: rgba(0, 122, 243, 1);
+    padding: 12px 0;
+    border-radius: 50px;
+}
+
+.login .login-text img {
+    height: 216px;
+    margin-bottom: 16px;
+}
+
+.login .login-text h1 {
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.login .login-text p {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* carousel */
 .carousel-container {
@@ -129,6 +214,137 @@ nav li a {
     font-weight: 700;
 }
 
+.carousel-container button#ad-btn {
+    padding: 12px 18px;
+    border-radius: 60px;
+    background-color: #007AF3;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* add manager modal  */
+#add-modal {
+    background-color: rgba(0, 9, 32, 1) !important;
+    padding: 30px 80px !important;
+    top: 5% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 693px;
+    height: 92%;
+    border-radius: 10px !important;
+    border: none !important;
+}
+
+#add-modal i.fa-circle-xmark {
+    float: right;
+}
+
+#add-modal h1 {
+    font-size: 24px;
+    font-weight: 700;
+    /* text-align: center; */
+    margin-bottom: 34px;
+}
+
+#add-modal button {
+    background-color: rgba(0, 122, 243, 1);
+    display: block;
+    padding: 9px 26px;
+    border-radius: 60px;
+}
+
+#add-modal .ad {
+    background-color: rgba(7, 27, 67, 1);
+    border-radius: 10px;
+    padding: 20px 12px;
+    margin-bottom: 33px
+}
+
+#add-modal .ad h2 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 15px
+}
+
+#add-modal .ad h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0
+}
+
+#add-modal label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#add-modal label.img-label {
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px 0;
+    border-radius: 30px;
+    width: 100%;
+    color: rgba(255, 255, 255, 0.5)
+}
+
+#add-modal label.img-label i {
+    margin-left: 10px
+}
+
+#add-modal select {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px 20px;
+    margin-bottom: 16px;
+    /* background-color: rgba(255, 255, 255, 0.1); */
+    /* color: rgba(6, 25, 71, 1); */
+    border-radius: 30px;
+}
+
+#add-modal input {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 10px 20px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFF;
+    border-radius: 30px;
+}
+
+#add-modal input.ad-img-input {
+    display: none
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.carousel-container button#ad-btn i {
+    margin-right: 10px
+}
+
 .carousel-container .poll {
     position: relative;
     background-color: rgba(0, 122, 243, 1);
@@ -140,13 +356,13 @@ nav li a {
 
 .carousel-container .poll::before {
     content: "";
-    position: absolute; 
-    width: 100%; 
-    height: 100%; 
+    position: absolute;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(0,0,0,0.5);
-    cursor: pointer; 
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 
 .carousel-container .poll.active::before {
@@ -185,7 +401,9 @@ nav li a {
 }
 
 /* active-poll  */
-.active-poll .graph, .active-poll .leaderboard, .active-poll .users {
+.active-poll .graph,
+.active-poll .leaderboard,
+.active-poll .users {
     padding: 16px;
     background-color: rgba(12, 33, 87, 1);
     border-radius: 20px;
@@ -204,8 +422,8 @@ nav li a {
 }
 
 .leaderboard .board {
-    overflow-y: scroll; 
-    max-height:310px;
+    overflow-y: scroll;
+    max-height: 310px;
     /* width: 100% !important;
     overflow-x: hidden; */
 }
@@ -306,18 +524,22 @@ nav li a {
     margin-top: 97px;
     margin-bottom: 40px;
 }
-.polls-page .categories, .single-poll .categories {
+
+.polls-page .categories,
+.single-poll .categories {
     padding: 25px;
     background-color: rgba(6, 25, 71, 1);
     border-radius: 10px;
 }
 
-.polls-page .categories h1, .single-poll .categories h1 {
+.polls-page .categories h1,
+.single-poll .categories h1 {
     font-size: 20px;
     font-weight: 700
 }
 
-.polls-page .categories label, .single-poll .categories label {
+.polls-page .categories label,
+.single-poll .categories label {
     font-size: 18px;
     font-weight: 400;
     margin-left: 13px;
@@ -370,7 +592,7 @@ nav li a {
     color: rgba(132, 194, 255, 1);
 }
 
-.polls-page .poll p.open i{
+.polls-page .poll p.open i {
     margin-left: 10px;
 }
 
@@ -448,7 +670,8 @@ nav li a {
     color: #FFF
 }
 
-.single-poll .graph, .single-poll .leaderboard {
+.single-poll .graph,
+.single-poll .leaderboard {
     border-radius: 20px;
     background-color: rgba(12, 33, 87, 1);
     padding: 18px
@@ -620,6 +843,175 @@ nav li a {
 
 
 
+/* live polls  */
+.live #logo {
+    margin-right: 155px
+}
+
+.live .searchbar {
+    padding: 15px 26px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 100px;
+    width: 688px;
+}
+
+.live .searchbar input {
+    width: 100%;
+    background-color: transparent;
+    color: #FFF
+}
+
+.live .poll {
+    padding: 21px 26px;
+    border-radius: 10px;
+    background-color: rgba(7, 27, 67, 1);
+    width: 960px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.live .poll h1 {
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.live .poll h2 {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.live .poll h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.live .poll p {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.5)
+}
+
+.live .poll button {
+    border-radius: 50px;
+    background-color: rgba(0, 122, 243, 1);
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px 17px
+}
+
+.live button#logout {
+    border-radius: 50px;
+    background-color: rgba(0, 122, 243, 1);
+    font-size: 16px;
+    font-weight: 400;
+    padding: 10px 17px
+}
+
+#LivePollModal {
+    width: 836px;
+    height: 90%;
+    border-radius: 10px !important;
+    border: 0 !important;
+    background-color: rgba(7, 27, 67, 1) !important;
+    top: 5% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 38px 50px !important
+}
+
+#LivePollModal i.fa-circle-xmark {
+    float: right
+}
+
+#LivePollModal h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 33px;
+}
+
+#LivePollModal h2 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#LivePollModal .candidates {
+    max-height: 80%;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+    overflow-x: hidden;
+    padding-right: 10px
+}
+
+#LivePollModal .candidates::-webkit-scrollbar {
+    width: 5px;
+}
+
+#LivePollModal .candidates::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+#LivePollModal .candidates::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+#LivePollModal .candidates img {
+    border-radius: 10px;
+}
+
+#LivePollModal .candidates h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+#LivePollModal .candidates p {
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+#LivePollModal .candidates input {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #FFF;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#LivePollModal button {
+    background-color: rgba(0, 122, 243, 1);
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 18px;
+    font-weight: 400;
+    display: block;
+    float: right
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* edit polls page  */
@@ -764,7 +1156,8 @@ nav li a {
     text-align: center;
 }
 
-.new-polls .input, .new-polls .or {
+.new-polls .input,
+.new-polls .or {
     margin-bottom: 40px;
 }
 
@@ -854,7 +1247,7 @@ nav li a {
     background-color: #FFF;
 } */
 
-.new-polls .or .row > div {
+.new-polls .or .row>div {
     padding: 0 !important
 }
 
@@ -1052,7 +1445,8 @@ nav li a {
     color: rgba(255, 0, 0, 1)
 }
 
-.aspirants .aspirant button, .aspirants .aspirant2 button {
+.aspirants .aspirant button,
+.aspirants .aspirant2 button {
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
@@ -1229,13 +1623,13 @@ nav li a {
     margin-right: 11px
 }
 
-.view button.decline, 
+.view button.decline,
 #acceptModal button.decline {
     background-color: #FFF;
     color: rgba(0, 122, 243, 1)
 }
 
-.view button.accept, 
+.view button.accept,
 #acceptModal button.accept {
     background-color: rgba(0, 122, 243, 1);
     color: #FFF
@@ -1268,7 +1662,7 @@ nav li a {
 
 .view .history {
     padding: 27px 29px;
-    background-color: rgba(4, 19, 54, 1); 
+    background-color: rgba(4, 19, 54, 1);
     border-radius: 10px;
     margin-bottom: 44px;
 }
@@ -1444,7 +1838,9 @@ nav li a {
     margin-bottom: 15px;
 }
 
-.create-candidate .input input, .create-candidate .input select, .create-candidate .input textarea {
+.create-candidate .input input,
+.create-candidate .input select,
+.create-candidate .input textarea {
     display: block;
     width: 100%;
     background-color: #FFF;
@@ -1461,7 +1857,8 @@ nav li a {
     margin-bottom: 120px;
 }
 
-.create-candidate .history h1, .create-candidate .media h1 {
+.create-candidate .history h1,
+.create-candidate .media h1 {
     font-size: 30px;
     font-weight: 700;
     margin-top: 80px;
@@ -1474,16 +1871,16 @@ nav li a {
     color: rgba(0, 122, 243, 1);
 }
 
-.create-candidate .history p i{
+.create-candidate .history p i {
     font-size: 27px;
     margin-right: 20px;
 }
 
-.create-candidate .media input{
+.create-candidate .media input {
     border-radius: 100px;
 }
 
-.create-candidate .media button{
+.create-candidate .media button {
     /* width: 100%; */
     border-radius: 50px;
     background-color: rgba(0, 122, 243, 1);
@@ -1548,7 +1945,8 @@ nav li a {
     margin-bottom: 50px;
 }
 
-.preview-candidate .history h1, .preview-candidate .media h1 {
+.preview-candidate .history h1,
+.preview-candidate .media h1 {
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 40px;
@@ -1631,8 +2029,8 @@ nav li a {
 }
 
 .users-page .aside .searchbar input {
-   width: 100%;
-   background-color: transparent;
+    width: 100%;
+    background-color: transparent;
 }
 
 .users-page .aside .filter {
@@ -1646,7 +2044,7 @@ nav li a {
     padding: 10px;
 }
 
-.users-page .aside .filter .category > div {
+.users-page .aside .filter .category>div {
     padding: 0 !important;
 }
 
@@ -1654,7 +2052,7 @@ nav li a {
     background-color: turquoise;
 }
 
-.users-page .aside .filter .icon{
+.users-page .aside .filter .icon {
     height: 40px;
     background-color: #FFF;
     height: 40px;
@@ -1663,8 +2061,8 @@ nav li a {
 }
 
 .users-page h3 {
-   font-size: 20px;
-   font-weight: 700;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 
@@ -1707,7 +2105,8 @@ nav li a {
 }
 
 /* blacklist modal  */
-#blacklistModal, #blacklistedModal {
+#blacklistModal,
+#blacklistedModal {
     background-color: rgba(7, 27, 67, 1) !important;
     padding: 42px 82px !important;
     /* top: 50%;
@@ -1889,7 +2288,7 @@ nav li a {
 }
 
 .single-user .main .header .dropdown:hover .dropdown-content {
-  display: block;
+    display: block;
 }
 
 
@@ -2102,7 +2501,7 @@ nav li a {
 .countries section p {
     font-size: 16px;
     font-weight: 400;
-    color:rgba(255, 255, 255, 0.5)
+    color: rgba(255, 255, 255, 0.5)
 }
 
 .countries section i.fa-pen,
@@ -2143,11 +2542,11 @@ nav li a {
 #add-country::-webkit-scrollbar {
     width: 5px;
 }
- 
+
 #add-country::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
- 
+
 #add-country::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 10px;
@@ -2197,7 +2596,8 @@ nav li a {
     cursor: pointer;
 }
 
-#add-country label#file, #add-party label#file {
+#add-country label#file,
+#add-party label#file {
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 12px;
@@ -2209,7 +2609,8 @@ nav li a {
     color: rgba(10, 24, 61, 0.52)
 }
 
-#add-country p, #add-party p {
+#add-country p,
+#add-party p {
     font-size: 12px;
     font-weight: 400;
     margin-bottom: 28px;
@@ -2240,7 +2641,8 @@ nav li a {
     margin-bottom: 21px;
 } */
 
-#add-country button#submit, #add-party button#submit {
+#add-country button#submit,
+#add-party button#submit {
     font-size: 18px;
     font-weight: 400;
     background-color: rgba(0, 122, 243, 1);
@@ -2304,7 +2706,8 @@ nav li a {
     display: block;
 }
 
-#add-party select, #add-party input {
+#add-party select,
+#add-party input {
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 36px;
@@ -2314,6 +2717,7 @@ nav li a {
     padding: 15px 26px;
     color: #FFF
 }
+
 /* 
 #add-party input {
     font-size: 16px;
@@ -2347,31 +2751,16 @@ nav li a {
 
 
 /* media queries */
-@media (min-width: 1400px) {
-    
-}
+@media (min-width: 1400px) {}
 
-@media (min-width: 1120px) and (max-width: 1399px) {
+@media (min-width: 1120px) and (max-width: 1399px) {}
 
-}
+@media (min-width: 992px) and (max-width: 1119px) {}
 
-@media (min-width: 992px) and (max-width: 1119px) {
-    
-}
+@media (min-width: 768px) and (max-width: 991px) {}
 
-@media (min-width: 768px) and (max-width: 991px) {
-    
-}
+@media (min-width: 576px) and (max-width: 767px) {}
 
-@media (min-width: 576px) and (max-width: 767px) {
-    
-}
+@media (min-width: 386px) and (max-width: 575px) {}
 
-@media (min-width: 386px) and (max-width: 575px) {
-    
-}
-
-@media (max-width: 385px) {
-   
-}
-
+@media (max-width: 385px) {}

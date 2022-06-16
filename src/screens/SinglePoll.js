@@ -15,6 +15,17 @@ const SinglePoll = () => {
     // navigate
     const navigate = useNavigate()
 
+    // redirect if user is not logged in 
+    useEffect(() => {
+        if (localStorage.getItem('admin_token') === null) {
+            if (localStorage.getItem('pollofficer_token') === null) {
+                navigate('/')
+            } else {
+                navigate('/liveresults')
+            }
+        }
+    }, [])
+
     // modal
     const [closePollModal, setClosePollModal] = useState(false)
     const [editPollModal, setEdditPollMOdal] = useState(false)
@@ -81,6 +92,7 @@ const SinglePoll = () => {
     const [title, setTitle] = useState("")
     const [startDate, setStartDate] = useState("")
     const [endDate, setEndDate] = useState("")
+    const [livevotedate, setLivevotedate] = useState("")
 
     const openEditModal = () => {
         setTitle(currentPoll.polltitle)
@@ -89,6 +101,7 @@ const SinglePoll = () => {
         console.log(new Date("2022-12-02").toISOString().substring(0, 10))
         setStartDate(new Date(`${currentPoll.startdate.substring(5, 7)}-${Math.floor(currentPoll.startdate.substring(8, 10)) + 1}-${currentPoll.startdate.substring(0, 4)}`).toISOString().substring(0, 10))
         setEndDate(new Date(`${currentPoll.enddate.substring(5, 7)}-${Math.floor(currentPoll.enddate.substring(8, 10)) + 1}-${currentPoll.enddate.substring(0, 4)}`).toISOString().substring(0, 10))
+        setLivevotedate(new Date(`${currentPoll.livevotedate.substring(5, 7)}-${Math.floor(currentPoll.livevotedate.substring(8, 10)) + 1}-${currentPoll.livevotedate.substring(0, 4)}`).toISOString().substring(0, 10))
         setEdditPollMOdal(true)
     }
 
@@ -96,13 +109,13 @@ const SinglePoll = () => {
     const [updateLoading, setUpdateLoading] = useState(false)
     const [error, setError] = useState("")
     const editPoll = () => {
-        console.log(title, startDate, endDate)
+        // console.log(title, startDate, endDate)
         setUpdateLoading(true)
         axios({
             url: `${API.API_ROOT}/polls/editpoll/${id}`,
             method: "patch",
             headers: { "Content-Type": "application/json" },
-            data: { polltitle: title, startdate: startDate, enddate: endDate }
+            data: { polltitle: title, startdate: startDate, enddate: endDate, livevotedate: livevotedate }
         }).then((response) => {
             setUpdateLoading(false)
             // console.log(response)
@@ -241,6 +254,10 @@ const SinglePoll = () => {
                                                 <input type="date" name="date" id="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
                                                 {/* <i class="fa-solid fa-calendar-days"></i> */}
                                             </div>
+                                        </div>
+                                        <label htmlFor="live">Change Live Start Date</label>
+                                        <div className="input">
+                                            <input type="date" name="date" id="live" value={livevotedate} onChange={(e) => setLivevotedate(e.target.value)} />
                                         </div>
                                     </div>
                                     <p>{error}</p>

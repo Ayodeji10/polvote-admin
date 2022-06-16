@@ -2,13 +2,26 @@ import React, { useState, useEffect } from "react";
 import Nav from "../components/nav";
 import axios from "axios";
 import { API } from "../components/apiRoot";
-// import { DataContext } from '../dataContext';
-import { Link, useParams } from "react-router-dom";
-// import Modal, { contextType } from 'react-modal'
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Modal from 'react-modal'
+import SingleStoryCard from "../components/singleStoryCard";
 Modal.setAppElement('#root')
 
 const SingleUsers = () => {
+    // navigate
+    const navigate = useNavigate()
+
+    // redirect if user is not logged in 
+    useEffect(() => {
+        if (localStorage.getItem('admin_token') === null) {
+            if (localStorage.getItem('pollofficer_token') === null) {
+                navigate('/')
+            } else {
+                navigate('/liveresults')
+            }
+        }
+    }, [])
+
     const [postView, setPostView] = useState("all")
 
     // delete modals
@@ -18,10 +31,6 @@ const SingleUsers = () => {
     // blacklist modal 
     const [blacklistUserModal, setBlacklistModal] = useState(false)
     const [userBlacklistedModal, setUserBlacklistedModal] = useState(false)
-
-    // post modal 
-    const [flagPostModal, setFlagPostModal] = useState(false)
-    const [unflagPostModal, setUnflagPostModal] = useState(false)
 
     // all users  
     const [users, setUsers] = useState([])
@@ -254,43 +263,11 @@ const SingleUsers = () => {
                         {/* all posts  */}
                         {postView === "all" &&
                             <>
-                                {stories.filter((story) => story.userid === currentUser._id).map((story, index) => {
+                                {stories.filter((story) => story.userid === currentUser._id && story.status === "0").map((story, index) => {
                                     return (
-                                        <>
-                                            <div className="post mb-3">
-                                                <div className="row align-items-center">
-                                                    <div className=" col-lg-11">
-                                                        <p>{story.story}</p>
-                                                        <div className="row">
-                                                            <div className="col-lg-2">
-                                                                <h6 className="mb-0"><img src="/images/eye 1.png" alt="" />{story.storyviews.length}</h6>
-                                                            </div>
-                                                            <div className="col-lg-2">
-                                                                <h6 className="mb-0"><img src="/images/blogging 1.png" alt="" />{story.comments.length}</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-lg-1">
-                                                        <img src="/images/flag.png" alt="flag" onClick={() => setFlagPostModal(true)} />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* flag post modal  */}
-                                            <Modal isOpen={flagPostModal} onRequestClose={() => setFlagPostModal(false)} id="postModal">
-                                                <h3>You are about to flag a post</h3>
-                                                <div className="row">
-                                                    <div className="col-lg-6">
-                                                        <button id="cancel-btn" onClick={() => setFlagPostModal(false)}>Cancel</button>
-                                                    </div>
-                                                    <div className="col-lg-6">
-                                                        <button id="action-btn">Proceed</button>
-                                                    </div>
-                                                </div>
-                                            </Modal>
-                                        </>
+                                        <SingleStoryCard story={story} key={index} />
                                     )
-                                })}
+                                }).reverse()}
                             </>
                         }
 
@@ -299,41 +276,9 @@ const SingleUsers = () => {
                             <>
                                 {stories.filter((story) => story.userid === currentUser._id && story.status == 1).map((story, index) => {
                                     return (
-                                        <>
-                                            <div className="post mb-3">
-                                                <div className="row align-items-center">
-                                                    <div className=" col-lg-11">
-                                                        <p>{story.story}</p>
-                                                        <div className="row">
-                                                            <div className="col-lg-2">
-                                                                <h6 className="mb-0"><img src="images/eye 1.png" alt="" />120</h6>
-                                                            </div>
-                                                            <div className="col-lg-2">
-                                                                <h6 className="mb-0"><img src="images/blogging 1.png" alt="" />82</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="col-lg-1">
-                                                        <img src="/images/flag2.png" alt="" onClick={() => setUnflagPostModal(true)} />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            {/* unflag post modal  */}
-                                            <Modal isOpen={unflagPostModal} onRequestClose={() => setUnflagPostModal(false)} id="postModal">
-                                                <h3>You are about to unflag a post</h3>
-                                                <div className="row">
-                                                    <div className="col-lg-6">
-                                                        <button id="cancel-btn" onClick={() => setUnflagPostModal(false)}>Cancel</button>
-                                                    </div>
-                                                    <div className="col-lg-6">
-                                                        <button id="action-btn">Proceed</button>
-                                                    </div>
-                                                </div>
-                                            </Modal>
-                                        </>
+                                        <SingleStoryCard story={story} key={index} />
                                     )
-                                })}
+                                }).reverse()}
                             </>
                         }
                     </div>

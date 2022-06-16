@@ -2,13 +2,88 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API } from "../components/apiRoot";
 import Nav from "../components/nav";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS } from 'chart.js/auto'
 // import { Chart } from 'react-chartjs-2'
+import Modal from 'react-modal'
+import AdCard from "../components/adCard";
+Modal.setAppElement('#root')
 
 const Home = () => {
+    // history 
+    const navigate = useNavigate()
+
+    // redirect if user is not logged in 
+    useEffect(() => {
+        if (localStorage.getItem('admin_token') === null) {
+            if (localStorage.getItem('pollofficer_token') === null) {
+                navigate('/')
+            } else {
+                navigate('/liveresults')
+            }
+        }
+    }, [])
+
     const [pageLoading, setPageLoading] = useState(true)
+
+    // ad modal and states
+    const [adManagerModal, setAdManagerModal] = useState(false)
+    const [createNewAd, setCreateNewAd] = useState(false)
+
+    const [adtype, setAddtype] = useState("")
+    const [text, setText] = useState("")
+    const [link, setlink] = useState("")
+    const [image, setImage] = useState(null)
+
+    // // get ads 
+    const [ads, setAds] = useState([])
+
+    // fetch ads 
+    const getAds = async () => {
+        const response = await axios
+            .get(`${API.API_ROOT}/admanager/getall`)
+            .catch((error) => [
+                console.log('Err', error)
+            ]);
+        setAds(response.data)
+        // console.log(response)
+    }
+    useEffect(() => {
+        getAds()
+    }, [])
+
+    // create new ad 
+    const createAd = () => {
+        // axios.post(`${API.API_ROOT}/admanager/admanager`, { adtype, text, link, image }, { headers: { 'content-type': 'multipart/form-data' } })
+        //     .then(response => {
+        //         console.log(response)
+        //     }).catch(error => {
+        //         console.log(error)
+        //     })
+        console.log(adtype)
+        console.log(text)
+        console.log(link)
+        console.log(image)
+        const fd = new FormData()
+        fd.append('adtype', adtype)
+        fd.append('text', text)
+        fd.append('link', link)
+        fd.append('image', image)
+
+        axios({
+            url: `${API.API_ROOT}/admanager/admanager`,
+            method: "post",
+            headers: { "Content-Type": "multipart/form-data" },
+            data: fd
+        }).then((response) => {
+            // console.log(response)
+            getAds()
+            setCreateNewAd(false)
+        }, (error) => {
+            console.log(error)
+        })
+    }
 
     // fetch users 
     const [users, setUsers] = useState("")
@@ -81,7 +156,10 @@ const Home = () => {
             <Nav />
             {/* carousel  */}
             <div className="carousel-container">
-                <h1 className="mb-4">Ongoing Polls</h1>
+                <div className="d-flex justify-content-between align-items-center mb-4">
+                    <h1>Ongoing Polls</h1>
+                    <button id="ad-btn" onClick={() => setAdManagerModal(true)}><i className="fa-solid fa-volume-high" />Ads Manager</button>
+                </div>
                 <div className="carousel">
                     {polls.map((poll, index) => {
                         return (
@@ -181,6 +259,43 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+
+            {/* add-manager */}
+            <Modal isOpen={adManagerModal} onRequestClose={() => setAdManagerModal(false)} id="add-modal">
+                <i className="fa-solid fa-circle-xmark" onClick={() => setAdManagerModal(false)} />
+                <h1>Ads Manager</h1>
+                <div className="d-flex justify-content-end mb-3">
+                    {createNewAd ? <i className="fa-solid fa-arrow-left-long" onClick={() => setCreateNewAd(false)} /> : <button onClick={() => setCreateNewAd(true)}>Add New Advert</button>}
+                </div>
+                {createNewAd ?
+                    <div>
+                        <label htmlFor="position">Advert Position</label>
+                        <select name="position" id="position" onChange={(e) => setAddtype(e.target.value)} >
+                            <option value="">-- select  Position --</option>
+                            <option value="Top banner">Top banner</option>
+                            <option value="Bottom banner">Bottom banner</option>
+                            <option value="Top side panel">Top side panel</option>
+                            <option value="Bottom side panel">Bottom side panel</option>
+                            <option value="Story area">Story area</option>
+                            <option value="Profile area">Profile area</option>
+                        </select>
+                        <label htmlFor="text9">Insert text</label>
+                        <input type="text" id="text9" placeholder="Type here" value={text} onChange={(e) => setText(e.target.value)} />
+                        <label htmlFor="link9">Insert link</label>
+                        <input type="url" id="link9" placeholder="Type here" value={link} onChange={(e) => setlink(e.target.value)} />
+                        <label htmlFor="image9">Insert image</label>
+                        <label htmlFor="image9" className="img-label">Upload image<i className="fa-solid fa-arrow-up-from-bracket" /></label>
+                        <input type="file" id="image9" className="ad-img-input" onChange={(e) => setImage(e.target.files[0])} />
+                        {image !== null && <img src={URL.createObjectURL(image)} alt="" className="img-fluid mb-3" />}
+                        <button onClick={createAd}>Add Advert</button>
+                    </div> :
+                    <>
+                        {ads.map((ad, index) => {
+                            return <AdCard ad={ad} key={index} getAds={getAds} />
+                        })}
+                    </>
+                }
+            </Modal>
         </div>
     );
 };

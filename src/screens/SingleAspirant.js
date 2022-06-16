@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import Nav from '../components/nav'
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { API } from "../components/apiRoot";
 import axios from "axios";
 import Modal from 'react-modal'
 Modal.setAppElement('#root')
 
 function SingleAspirant() {
+    // history 
+    const navigate = useNavigate()
+
+    // redirect if user is not logged in 
+    useEffect(() => {
+        if (localStorage.getItem('admin_token') === null) {
+            if (localStorage.getItem('pollofficer_token') === null) {
+                navigate('/')
+            } else {
+                navigate('/liveresults')
+            }
+        }
+    }, [])
+
     // params 
     const { id } = useParams()
 
@@ -99,7 +113,7 @@ function SingleAspirant() {
                 <div className="row header mt-4 mb-5">
                     <div className="col-lg-3">
                         <h1>Aspirant Profiles</h1>
-                        <p className="mb-0">1080 Aspirant Profiles</p>
+                        <p className="mb-0">{aspirants.length} Aspirant Profiles</p>
                     </div>
                     <div className="col-lg-9 d-flex align-items-center justify-content-end">
                         <div className="searchbar d-flex justify-content-between align-items-center">

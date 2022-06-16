@@ -2,9 +2,23 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API } from "../components/apiRoot";
 import Nav from "../components/nav";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Users = () => {
+    // navigate
+    const navigate = useNavigate()
+
+    // redirect if user is not logged in 
+    useEffect(() => {
+        if (localStorage.getItem('admin_token') === null) {
+            if (localStorage.getItem('pollofficer_token') === null) {
+                navigate('/')
+            } else {
+                navigate('/liveresults')
+            }
+        }
+    }, [])
+
     const [loading, setLoading] = useState(true)
 
     // users array 

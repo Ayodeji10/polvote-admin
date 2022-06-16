@@ -1,11 +1,23 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { DataContext } from "../dataContext";
+import { Link, useNavigate } from "react-router-dom";
 
 const Nav = () => {
+    // context 
+    const { context, setContext } = useContext(DataContext)
+
+    // history 
+    const navigate = useNavigate()
+
+    const logOut = () => {
+        setContext({ ...context, user: {} });
+        localStorage.removeItem('admin_token')
+        navigate("/")
+    }
 
     return (
         <nav className="navbar navbar-expand-lg navbar-light">
-            <Link to='/' className="navbar-brand">
+            <Link to='/overview' className="navbar-brand">
                 <img
                     src={require("../images/Logo.png").default}
                     alt="logo"
@@ -18,7 +30,7 @@ const Nav = () => {
             </button>
             <div className="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
                 <ul className="navbar-nav ms-auto">
-                    <li className="nav-item"><Link to='/' className="nav-link">Overview</Link></li>
+                    <li className="nav-item"><Link to='/overview' className="nav-link">Overview</Link></li>
                     <li className="nav-item"><Link to='/polls' className="nav-link">Polls</Link></li>
                     {/* <li className="nav-item"><Link to="/users" className="nav-link">Users</Link></li> */}
                     <li className="nav-item"><Link to="" className="nav-link">Courses</Link></li>
@@ -38,6 +50,7 @@ const Nav = () => {
                             </li> */}
                         </ul>
                     </li>
+                    <li className="nav-item"><button onClick={logOut}>Log Out</button></li>
                 </ul>
             </div>
         </nav>
