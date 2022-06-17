@@ -23,7 +23,7 @@ const Polls = () => {
 
     // polls array 
     const [polls, setPolls] = useState([])
-    const [value, setValue] = useState(0)
+    const [pollsList, setPollsList] = useState([])
     // fetch polls 
     const fetchPolls = async () => {
         const response = await axios
@@ -32,11 +32,19 @@ const Polls = () => {
                 console.log('Err', error)
             ]);
         setPolls(response.data)
+        setPollsList(response.data)
         setPageLoading(false)
     }
     useEffect(() => {
         fetchPolls()
     }, [])
+
+    const searchPolls = (e) => {
+        // console.log(e.target.value)
+        const filteredPolls = polls.filter(poll => `${poll.polltitle}`.toLowerCase().includes(e.target.value.toLowerCase()) && poll.status === "0")
+        // console.log(people)
+        setPollsList(filteredPolls)
+    }
 
     if (pageLoading) {
         return (
@@ -99,7 +107,7 @@ const Polls = () => {
                         <div className="row header mb-4">
                             <div className="col-lg-9">
                                 <div className="searchbar d-flex justify-content-between align-items-center">
-                                    <input type="text" placeholder="Search for Poll" />
+                                    <input type="text" placeholder="Search for Poll" onChange={(e) => searchPolls(e)} />
                                     <img src="images/search.png" alt="" />
                                 </div>
                             </div>
@@ -108,7 +116,7 @@ const Polls = () => {
                             </div>
                         </div>
                         <div className="polls-container">
-                            {polls.map((poll, index) => {
+                            {pollsList.map((poll, index) => {
                                 return (
                                     <div className="poll mb-3" key={index}>
                                         <div className="row align-items-center">

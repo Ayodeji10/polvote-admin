@@ -25,6 +25,7 @@ function Parties() {
 
     // fetch parties and countries
     const [parties, setParties] = useState([])
+    const [partyList, setPartyList] = useState([])
     const [countries, setCountries] = useState([])
 
     // parties 
@@ -35,6 +36,14 @@ function Parties() {
                 console.log('Err', error)
             ]);
         setParties(response.data)
+        setPartyList(response.data)
+    }
+
+    const searchParties = (e) => {
+        // console.log(e.target.value)
+        const filteredParties = parties.filter(party => party.partyname.toLowerCase().includes(e.target.value.toLowerCase()))
+        // console.log(people)
+        setPartyList(filteredParties)
     }
 
     // countries 
@@ -168,7 +177,7 @@ function Parties() {
                                 </div>
                                 <div className="col-lg-7">
                                     <div className="searchbar d-flex align-items-center">
-                                        <input type="text" placeholder="Search for Political Party" />
+                                        <input type="text" placeholder="Search for Political Party" onChange={(e) => searchParties(e)} />
                                         <img src="/images/search.png" alt="search" />
                                     </div>
                                 </div>
@@ -176,7 +185,7 @@ function Parties() {
                         </div>
                     </div>
                 </header>
-                <section>
+                <section className='mb-5'>
                     <div className="row header">
                         <div className="col-lg-4">
                             <h2>POLITICAL PARTIES [5]</h2>
@@ -194,7 +203,7 @@ function Parties() {
                             <h2>STATUS</h2>
                         </div>
                     </div>
-                    {parties.map(party => {
+                    {partyList.map(party => {
                         return (
                             <div className="row align-items-center country" key={party._id}>
                                 <div className="col-lg-4 d-flex align-items-center">

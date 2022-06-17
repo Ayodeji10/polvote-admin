@@ -34,10 +34,16 @@ const Aspirants = () => {
         setAspirants(response.data)
         setAspirantList(response.data)
     }
-
     useEffect(() => {
         fetchAspirants()
     }, [])
+
+    const searchProfile = (e) => {
+        // console.log(e.target.value)
+        const people = aspirants.filter(aspirant => `${aspirant.firstname} ${aspirant.lastname}`.toLowerCase().includes(e.target.value.toLowerCase()))
+        // console.log(people)
+        setAspirantList(people)
+    }
 
     // view 
     const [view, setView] = useState("grid")
@@ -77,7 +83,7 @@ const Aspirants = () => {
                         <img src="images/sort.png" alt="sort" />
                         {view === "grid" ? <img src="images/list.png" alt="list" onClick={() => setView("list")} /> : <img src="images/grid.png" alt="grid" onClick={() => setView("grid")} />}
                         <div className="searchbar d-flex justify-content-between align-items-center">
-                            <input type="text" placeholder="Search for Aspirant Profile" />
+                            <input type="text" placeholder="Search for Aspirant Profile" onChange={(e) => searchProfile(e)} />
                             <img src="images/search.png" alt="search" />
                         </div>
                     </div>
@@ -94,7 +100,7 @@ const Aspirants = () => {
                     <div className="col-lg-9">
                         {view === "grid" &&
                             <div className="row grid">
-                                {aspirants.map((aspirant) => {
+                                {aspirantList.map((aspirant) => {
                                     return (
                                         <div className="col-lg-3">
                                             <div className={`aspirant ${aspirant.status == 0 && 'pending'} ${aspirant.status == 1 && 'approved'} ${aspirant.status == 2 && 'rejected'}`}>

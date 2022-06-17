@@ -26,6 +26,7 @@ function SingleAspirant() {
 
     // fetch all aspirants 
     const [aspirants, setAspirants] = useState([])
+    const [aspirantList, setAspirantList] = useState([])
     const fetchAspirants = async () => {
         const response = await axios
             .get(`${API.API_ROOT}/aspirant`)
@@ -33,10 +34,18 @@ function SingleAspirant() {
                 console.log('Err', error)
             ]);
         setAspirants(response.data)
+        setAspirantList(response.data)
     }
     useEffect(() => {
         fetchAspirants()
     }, [])
+
+    const searchProfile = (e) => {
+        // console.log(e.target.value)
+        const people = aspirants.filter(aspirant => `${aspirant.firstname} ${aspirant.lastname}`.toLowerCase().includes(e.target.value.toLowerCase()))
+        // console.log(people)
+        setAspirantList(people)
+    }
 
     // fetch current aspirant
     const [loading, setLoading] = useState(true)
@@ -117,7 +126,7 @@ function SingleAspirant() {
                     </div>
                     <div className="col-lg-9 d-flex align-items-center justify-content-end">
                         <div className="searchbar d-flex justify-content-between align-items-center">
-                            <input type="text" placeholder="Search for Aspirant Profile" />
+                            <input type="text" placeholder="Search for Aspirant Profile" onChange={(e) => searchProfile(e)} />
                             <img src="/images/search.png" alt="search" />
                         </div>
                     </div>
@@ -131,7 +140,7 @@ function SingleAspirant() {
                             <button>Approved Profiles</button>
                         </div>
                         <div className="all">
-                            {aspirants.map((aspirant) => {
+                            {aspirantList.map((aspirant) => {
                                 return (
                                     <Link to={`/aspirants/${aspirant._id}`}>
                                         <div className={`person d-flex justify-content-between align-items-center ${aspirant._id === id && "active"} ${aspirant.status == 0 && 'pending'} ${aspirant.status == 1 && 'approved'} ${aspirant.status == 2 && 'rejected'}`}>

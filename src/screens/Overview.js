@@ -225,19 +225,23 @@ const Home = () => {
                             <div className="board">
                                 {aspirant.map((each, index) => {
                                     return (
-                                        <div className="candidate d-flex justify-content-between align-items-center mb-4" key={index}>
-                                            <img src={each.image === undefined ? "/images/user (1) 1.png" : `${each.image}`} alt="candidate-img" className="img-fluid" />
-                                            <img src={parties.filter(party => party.partyname === each.politparty).length === 0 ? "/img/user (1) 1.png" : `${parties.filter(party => party.partyname === each.politparty)[0].image}`} alt="party" className="img-fluid" />
-                                            <div>
+                                        <div className="row candidate mb-4" key={index}>
+                                            <div className="col-2">
+                                                <img src={each.image === undefined ? "/images/user (1) 1.png" : `${each.image}`} alt="candidate-img" className="img-fluid" />
+                                            </div>
+                                            <div className="col-2">
+                                                <img src={parties.filter(party => party.partyname === each.politparty).length === 0 ? "/img/user (1) 1.png" : `${parties.filter(party => party.partyname === each.politparty)[0].image}`} alt="party" className="img-fluid" />
+                                            </div>
+                                            <div className="col-6">
                                                 <h3>{each.firstname} {each.lastname}</h3>
                                                 <h4 className="mb-0">{each.politparty}</h4>
                                             </div>
-                                            <div className="d-flex flex-column align-items-end">
-                                                <h3>{(each.votes.length / aspirant.reduce((total, aspirant) => {
+                                            <div className="col-2 d-flex flex-column align-items-end">
+                                                <h3>{((each.votes.length / aspirant.reduce((total, aspirant) => {
                                                     let increament = aspirant.votes.length
                                                     total += (increament)
                                                     return total
-                                                }, 0)) * 100}%</h3>
+                                                }, 0)) * 100).toFixed(1)}%</h3>
                                                 <h5>{each.votes.length} Votes</h5>
                                             </div>
                                         </div>

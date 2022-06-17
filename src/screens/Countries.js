@@ -135,6 +135,7 @@ function Countries() {
 
     // fetch countries 
     const [countries, setCountries] = useState([])
+    const [countriesList, setCountriesLIst] = useState([])
     const fetchCountries = async () => {
         const response = await axios
             .get(`${API.API_ROOT}/countries/countries`)
@@ -142,10 +143,18 @@ function Countries() {
                 console.log('Err', error)
             ]);
         setCountries(response.data)
+        setCountriesLIst(response.data)
     }
     useEffect(() => {
         fetchCountries()
     }, [])
+
+    const searchCountries = (e) => {
+        // console.log(e.target.value)
+        const filteredCountries = countries.filter(country => country.country.toLowerCase().includes(e.target.value.toLowerCase()))
+        // console.log(people)
+        setCountriesLIst(filteredCountries)
+    }
 
     // edit country 
     const [editCountryCategory, setEditCountryCategory] = useState([])
@@ -307,7 +316,7 @@ function Countries() {
                                 </div>
                                 <div className="col-lg-7">
                                     <div className="searchbar d-flex align-items-center">
-                                        <input type="text" placeholder="Search for Political Party" />
+                                        <input type="text" placeholder="Search for Political Party" onChange={(e) => searchCountries(e)} />
                                         <img src="images/search.png" alt="search" />
                                     </div>
                                 </div>
@@ -334,7 +343,7 @@ function Countries() {
                             <h2>STATUS</h2>
                         </div>
                     </div>
-                    {countries.map(country => {
+                    {countriesList.map(country => {
                         return (
                             <div className="row align-items-center country" key={country._id}>
                                 <div className="col-lg-4 d-flex align-items-center">

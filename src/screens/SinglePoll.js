@@ -119,7 +119,7 @@ const SinglePoll = () => {
         }).then((response) => {
             setUpdateLoading(false)
             // console.log(response)
-            window.location.reload()
+            // window.location.reload()
         }, (error) => {
             setUpdateLoading(false)
             setError('Something went wrong, please try again')
@@ -300,23 +300,21 @@ const SinglePoll = () => {
                                                 <div className="row">
                                                     <div className="col-6">
                                                         <img src={aspirant.image === undefined ? "/images/user (1) 1.png" : `${aspirant.image}`} alt="candidate-img" className="img-fluid" />
-                                                        {/* <img src={`https://drive.google.com/thumbnail?id=${aspirant.image}`} className="img-fluid" alt="profile-img" /> */}
                                                     </div>
                                                     <div className="col-6">
                                                         <img src={parties.filter(party => party.partyname === aspirant.politparty).length === 0 ? "/img/user (1) 1.png" : `${parties.filter(party => party.partyname === aspirant.politparty)[0].image}`} alt="party" className="img-fluid" />
-                                                        {/* <img src={require("../images/download 1.png").default} className="img-fluid" alt="party" /> */}
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="col-lg-6">
+                                            <div className="col-lg-7">
                                                 <h1 className="mb-0">{aspirant.firstname} {aspirant.lastname}</h1>
                                                 <p>{aspirant.politparty}</p>
                                                 <div className="bar-container">
-                                                    <div className="bar" style={{ width: `${(aspirant.votes.length / pollToTal) * 100}` }} />
+                                                    <div className="bar" style={{ width: `${(aspirant.votes.length / pollToTal) * 100}%` }} />
                                                 </div>
                                             </div>
-                                            <div className="col-lg-3 d-flex flex-column align-items-end">
-                                                <h1>{(aspirant.votes.length / pollToTal) * 100}%</h1>
+                                            <div className="col-lg-2 d-flex flex-column align-items-end">
+                                                <h1>{((aspirant.votes.length / pollToTal) * 100).toFixed(1)}%</h1>
                                                 <p>{aspirant.votes.length} Votes</p>
                                             </div>
                                         </div>
