@@ -14,6 +14,7 @@ import SingleUsers from './screens/SingleUser';
 import Countries from './screens/Countries';
 import Parties from './screens/Parties';
 import LiveResults from './screens/LiveResults';
+import Payment from './screens/Payment';
 import './App.css';
 
 
@@ -51,6 +52,7 @@ function App() {
           <Route path="/countries" element={<Countries />} />
           <Route path="/parties" element={<Parties />} />
           <Route path="/liveresults" element={<LiveResults />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes>
       </DataContext.Provider>
     </Router>

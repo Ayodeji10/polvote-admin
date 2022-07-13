@@ -2748,6 +2748,224 @@ nav li a {
 
 
 
+/* payment page  */
+.payment .header h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.payment .header button {
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 24px;
+    background-color: rgba(0, 122, 243, 0.5);
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.payment .header button.active {
+    background-color: rgba(0, 122, 243, 1);
+}
+
+.payment h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 37px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.payment .log-header {
+    padding: 0 21px
+}
+
+.payment .log-header p {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0;
+}
+
+.payment .log {
+    background-color: rgba(10, 24, 61, 1);
+    border-radius: 20px;
+    padding: 35px 21px;
+    margin-bottom: 40px;
+}
+
+.payment .log .row {
+    margin-bottom: 40px;
+}
+
+.payment .log .row:last-child {
+    margin-bottom: 0;
+}
+
+.payment .log p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.payment .log button {
+    font-size: 12px;
+    font-weight: 400;
+    border-radius: 5px;
+    padding: 6px 4px
+}
+
+.payment .log button#reject {
+    color: rgba(255, 0, 0, 1);
+    background-color: rgba(255, 191, 191, 1);
+    margin-right: 12px
+}
+
+.payment .log button#approve {
+    color: rgba(81, 141, 81, 1);
+    background-color: rgba(225, 252, 225, 1)
+}
+
+/* confirmation madal  */
+#paymentConfirmationModal {
+    background-color: rgba(10, 24, 61, 1) !important;
+    padding: 24px !important;
+    top: 15% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 543px;
+    height: 419px;
+    border-radius: 10px !important;
+    border: none !important;
+}
+
+#paymentConfirmationModal i {
+    float: right
+}
+
+#paymentConfirmationModal h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+#paymentConfirmationModal p {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0 auto 80px;
+    text-align: center;
+    max-width: 388px;
+}
+
+#paymentConfirmationModal div {
+    margin: 0 auto;
+    max-width: 388px;
+}
+
+#paymentConfirmationModal button {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 59px;
+    border-radius: 40px;
+}
+
+#paymentConfirmationModal button#cancel {
+    background-color: #FFF;
+    color: rgba(0, 122, 243, 1);
+}
+
+#paymentConfirmationModal button#confirm {
+    color: #FFF;
+    background-color: rgba(0, 122, 243, 1);
+}
+
+/* rejection moadl  */
+#paymentRejectionModal {
+    background-color: rgba(10, 24, 61, 1) !important;
+    padding: 24px !important;
+    top: 15% !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 396px;
+    height: 310px;
+    border-radius: 10px !important;
+    border: none !important;
+}
+
+#paymentRejectionModal i {
+    float: right
+}
+
+#paymentRejectionModal h1,
+#paymentRejectionModal p,
+#paymentRejectionModal div {
+    max-width: 302px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#paymentRejectionModal h1 {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 26px;
+}
+
+#paymentRejectionModal p {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 50px;
+    color: rgba(255, 255, 255, 0.8)
+}
+
+#paymentRejectionModal button {
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 26px;
+    border-radius: 40px;
+}
+
+#paymentRejectionModal button#cancel {
+    background-color: #FFF;
+    color: rgba(0, 122, 243, 1);
+}
+
+#paymentRejectionModal button#confirm {
+    color: #FFF;
+    background-color: rgba(0, 122, 243, 1);
+}
+
+#paymentRejectionModal textarea {
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 100px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 30px;
+    padding: 11px;
+    color: #FFF;
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* media queries */

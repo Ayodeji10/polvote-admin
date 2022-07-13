@@ -34,7 +34,7 @@ const Nav = () => {
                     <li className="nav-item"><Link to='/polls' className="nav-link">Polls</Link></li>
                     {/* <li className="nav-item"><Link to="/users" className="nav-link">Users</Link></li> */}
                     <li className="nav-item"><Link to="" className="nav-link">Courses</Link></li>
-                    <li className="nav-item"><Link to="" className="nav-link">Payment</Link></li>
+                    <li className="nav-item"><Link to="/payment" className="nav-link">Payment</Link></li>
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Directory</a>
                         <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
